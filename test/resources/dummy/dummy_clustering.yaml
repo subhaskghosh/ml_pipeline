@@ -1,0 +1,29 @@
+--- # This the configuration file for executing clustering pipeline
+- schemaVersion: "1.0"
+- pipelineMeta:
+    customer: Dummy
+    type: Clustering
+- stages:
+    - extract.csv:
+        parameter:
+          path: "./resources/dummy/csv/dummy.csv"
+        input: null
+        output: raw
+    - transform.column_name.upper:
+        parameter: null
+        input: raw
+        output: raw
+    - transform.dataframe.truncate:
+        parameter:
+          inplace: true
+          column: "RADIUS"
+          conditions: ["> 20", "< 11", "== 14"]
+        input: raw
+        output: raw
+    - transform.dataframe.truncate:
+          parameter:
+            inplace: true
+            column: "DIAGNOSIS_RESULT"
+            conditions: ["== M"]
+          input: raw
+          output: raw

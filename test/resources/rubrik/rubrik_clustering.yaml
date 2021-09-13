@@ -1,0 +1,28 @@
+--- # This the configuration file for executing clustering pipeline
+- schemaVersion: "1.0"
+- pipelineMeta:
+    customer: Rubrik
+    type: Clustering
+- stages:
+    - extract.postgres:
+        parameter:
+          sql: "./sql/01extract.sql"
+          conn:
+            parameter:
+              host: localhost
+              port: 15432
+              dbname: postgres
+              user: dna_ml_user1
+              password: "dna.dna.ml%321"
+        input: null
+        output: raw
+    - transform.column_name.upper:
+        parameter: null
+        input: raw
+        output: raw
+    - transform.dataframe.filter:
+        parameter:
+          column: "DNA_STD_AC_ANNUAL_REVENUE"
+          conditions: ["> 1000000000000", "< 10000"]
+        input: raw
+        output: raw
