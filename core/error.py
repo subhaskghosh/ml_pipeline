@@ -21,3 +21,6 @@ class ConfigNotFoundError(Exception):
 
 class NodeConfigurationError(Exception):
     '''Invalid node configuration error'''
+
+class CacheViolationError(Exception):
+    '''Invalid cache access'''

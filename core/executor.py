@@ -16,14 +16,14 @@ class Executor(object):
         return param.execute()
 
     def report_start(self, vertices):
-        print('Start to run:', vertices)
+        print('Starting:', vertices)
 
     def report_running(self, vertices):
-        print('Current running:', vertices)
+        print('Currently running:', vertices)
 
     def report_finish(self, vertices_result):
         for vertex, result in vertices_result:
-            print('Finished running {0} with result: {1}'.format(vertex.name, result))
+            print('Finished running {0}'.format(vertex.name))
 
     def deliver(self, vertex, result):
         vertex.accept_delivery(result)

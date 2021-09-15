@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from core.config import DAGBuilder
+from core.builder import DAGBuilder
 
 
 class TestDAGBuilder(TestCase):
@@ -8,5 +8,5 @@ class TestDAGBuilder(TestCase):
         db = DAGBuilder(path="./resources/dummy/dummy_clustering.yaml")
         dag = db.get()
         r = dag.run()
-        print(r.get_payload())
-        pass
+        #print(r.get_payload())
+        dag.show()

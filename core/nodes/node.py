@@ -34,39 +34,16 @@ class AbstructNode:
         return f"Param: {textwrap.fill(str(self.parameter),40)},\n I: {self.input},\n O: {self.output}"
 
     def execute(self):
-        print(f"Executing: {self.name} with input data {self.input_data}")
+        print(f"Executing: {self.name} with input data {self.input}")
 
-    def accept_delivery(self, input):
-        self.input_data = input
+    def add_cache(self, cache):
+        self.cache = cache
 
-class AbstructNodeResult:
-    '''Result data type as outout from node execution
-    Use type for passing the dict schema of the result
-    if required
-    '''
-    def __init__(self, name, type):
-        self.name = name
-        self.type = type
-        self.data = None
+    def addToCache(self,k, v):
+        self.cache.update(k, v)
 
-    def __repr__(self):
-        return f"result({self.name},{self.type})"
+    def getFromCache(self,k):
+        return self.cache.get(k)
 
-    def __hash__(self):
-        return hash(f"node({self.name},{self.type})")
-
-    def __eq__(self, other):
-        return (
-                self.__class__ == other.__class__ and
-                self.name == other.name and
-                self.type == other.type
-        )
-
-    def __str__(self):
-        return f"result({self.name},{self.type})"
-
-    def update_payload(self,data):
-        self.data = data
-
-    def get_payload(self):
-        return self.data
+    def accept_delivery(self, data):
+        pass

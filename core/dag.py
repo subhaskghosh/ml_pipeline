@@ -7,7 +7,7 @@ Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
 Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
-
+from core.cache import SimpleCache
 from core.error import *
 import networkx as nx
 
@@ -31,11 +31,18 @@ def call_method(instance, method, *args, **kwargs):
 class Dag(object):
     """Provides functionality to create a DAG"""
 
-    def __init__(self):
+    def __init__(self,meta=None):
         self.selector = Selector()
         self.graph = nx.DiGraph()
         self.processor = Processor()
         self.executor = Executor()
+        self.cache = SimpleCache()
+        if meta:
+            self.customer = meta['customer']
+            self.pipelinetype = meta['type']
+
+    def getCache(self):
+        return self.cache
 
     def add_vertex(self, *vertices):
         '''Add one or more vertices'''
@@ -116,13 +123,13 @@ class Dag(object):
 
     def show(self, options=None):
         import matplotlib.pyplot as plt
-        plt.figure(figsize=(10, 10), dpi=80)
+        plt.figure(figsize=(12, 12), dpi=80)
 
         if not options:
             self.options = {
                 'arrowstyle': '->',
                 'arrowsize': 20,
-                "font_size": 11,
+                "font_size": 9,
                 "node_size": 10000,
                 "node_color": "white",
                 "edgecolors": "black",
@@ -158,7 +165,9 @@ class Dag(object):
         nx.draw_networkx_labels(self.graph, tpos, labels, **self.options)
         nx.draw_networkx_labels(self.graph, lpos, elabels, **self.options)
 
+
         ax = plt.gca()
+        ax.set_title(f'{self.pipelinetype} pipeline for {self.customer}')
         ax.margins(0.20)
         plt.axis("off")
         plt.show()

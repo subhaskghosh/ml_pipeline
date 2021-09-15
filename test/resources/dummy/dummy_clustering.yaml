@@ -13,17 +13,32 @@
         parameter: null
         input: raw
         output: raw
-    - transform.dataframe.truncate:
+    - transform.dataframe.filter.string:
         parameter:
           inplace: true
-          column: "RADIUS"
-          conditions: ["> 20", "< 11", "== 14"]
+          columns: ["DNA_STD_DC_OPPTY_STAGE_NAME"]
+          conditions: ["DNA_STD_DC_OPPTY_STAGE_NAME": ["like r'7'"]]
         input: raw
         output: raw
     - transform.dataframe.truncate:
-          parameter:
-            inplace: true
-            column: "DIAGNOSIS_RESULT"
-            conditions: ["== M"]
-          input: raw
-          output: raw
+        parameter:
+          inplace: false
+          columns: ["DNA_STD_AC_ANNUAL_REVENUE", "DNA_STD_AC_NUMBER_OF_EMPLOYEES","DNA_STD_AC_INDUSTRY_GROUPS"]
+          conditions: ["DNA_STD_AC_ANNUAL_REVENUE": ["> 1000000000000", "< 10000"], "DNA_STD_AC_NUMBER_OF_EMPLOYEES": ["< 1"]]
+        input: raw
+        output: temp
+    - transform.dataframe.knnimpute:
+        parameter:
+          using_column: "DNA_STD_AC_INDUSTRY_GROUPS"
+          on_columns: ["DNA_STD_AC_ANNUAL_REVENUE", "DNA_STD_AC_NUMBER_OF_EMPLOYEES"]
+          n_neighbors: 5
+        input: temp
+        output: temp
+    - transform.dataframe.append.column:
+        parameter:
+          from_df: temp
+          to_df: raw
+          from_df_columns: ["DNA_STD_AC_ANNUAL_REVENUE", "DNA_STD_AC_NUMBER_OF_EMPLOYEES"]
+          to_df_columns: ["DNA_STD_AC_NUMBER_OF_EMPLOYEES_KNNIMPUTE", "DNA_STD_AC_ANNUAL_REVENUE_KNNIMPUTE"]
+        input: null
+        output: temp
