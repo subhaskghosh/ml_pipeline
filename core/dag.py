@@ -130,7 +130,7 @@ class Dag(object):
                 'arrowstyle': '->',
                 'arrowsize': 20,
                 "font_size": 9,
-                "node_size": 10000,
+                "node_size": 450,
                 "node_color": "white",
                 "edgecolors": "black",
                 "linewidths": 2,
@@ -159,11 +159,11 @@ class Dag(object):
             elabels[v] = str(v)
 
         for k, v in pos.items():
-            lpos[k] = (v[0]+0.04,v[1])
+            lpos[k] = (v[0],v[1])
             tpos[k] = (v[0],v[1]+0.06)
 
-        nx.draw_networkx_labels(self.graph, tpos, labels, **self.options)
-        nx.draw_networkx_labels(self.graph, lpos, elabels, **self.options)
+        nx.draw_networkx_labels(self.graph, lpos, labels, **self.options)
+        #nx.draw_networkx_labels(self.graph, lpos, elabels, **self.options)
 
 
         ax = plt.gca()

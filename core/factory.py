@@ -4,6 +4,7 @@ Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
 Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
+from core.nodes.common.generic import *
 from core.nodes.extract.file.csv_reader import *
 from core.nodes.node import AbstructNode
 from core.nodes.transform.preprocessing import *
@@ -17,7 +18,11 @@ class NodeFactory(object):
             'transform.dataframe.truncate': 'DataFrameTruncateExtreme',
             'transform.dataframe.filter.string': 'DataFrameStringFilter',
             'transform.dataframe.knnimpute': 'DataFrameFilterKNNImputer',
-            'transform.dataframe.append.column': 'DataFrameAppendColumn'
+            'transform.dataframe.append.column': 'DataFrameAppendColumn',
+            'transform.dataframe.one_hot_encoding': 'DataFrameColumnOneHotEncoding',
+            'transform.dataframe.filter.numerical': 'DataFrameNumericalFilter',
+            'transform.dataframe.filter.compare': 'DataFrameComparatorFilter',
+            'common.add.variable': 'AddVariables',
         }
 
     def get(self, name, parameter, input, output):

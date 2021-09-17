@@ -2,27 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e60191d-1d9f-4141-99df-29eefe8f3786" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/builder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/cache.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/dag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/error.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/error.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/executor.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/executor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/nodes/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/common/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/common/db/connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/resources/dummy/csv/dummy.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/csv/dummy.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_DAGBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_DAGBuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xaa" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xac" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xad" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xae" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xaf" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_DAGBuilder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+            <state relative-caret-position="135">
+              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -45,22 +31,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/node.py">
+        <entry file="file://$PROJECT_DIR$/core/factory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+            <state relative-caret-position="285">
+              <caret line="22" column="77" selection-start-line="22" selection-start-column="77" selection-end-line="22" selection-end-column="77" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/factory.py">
+        <entry file="file://$PROJECT_DIR$/core/nodes/common/generic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-              <folding>
-                <element signature="e#200#248#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="360">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -68,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="36" column="39" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="39" />
+            <state relative-caret-position="363">
+              <caret line="73" column="23" lean-forward="true" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -77,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="262" selection-start-line="262" selection-end-line="262" />
+            <state relative-caret-position="378">
+              <caret line="415" column="40" selection-start-line="415" selection-start-column="40" selection-end-line="415" selection-end-column="40" />
               <folding>
                 <element signature="e#277#322#0" expanded="true" />
               </folding>
@@ -89,11 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/dag.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="131" column="30" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
-              <folding>
-                <element signature="e#374#410#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2310">
+              <caret line="161" column="27" selection-start-line="161" selection-start-column="27" selection-end-line="161" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -153,17 +133,18 @@
         <option value="$PROJECT_DIR$/core/config.py" />
         <option value="$PROJECT_DIR$/core/builder.py" />
         <option value="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" />
-        <option value="$PROJECT_DIR$/test/test_DAGBuilder.py" />
         <option value="$PROJECT_DIR$/core/executor.py" />
         <option value="$PROJECT_DIR$/core/nodes/node.py" />
         <option value="$PROJECT_DIR$/core/dag.py" />
-        <option value="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" />
+        <option value="$PROJECT_DIR$/test/test_DAGBuilder.py" />
+        <option value="$PROJECT_DIR$/core/nodes/common/generic.py" />
         <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" />
         <option value="$PROJECT_DIR$/core/factory.py" />
+        <option value="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="947" />
@@ -192,13 +173,6 @@
               <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
               <item name="nodes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="nodes" type="462c0819:PsiDirectoryNode" />
-              <item name="transform" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
@@ -244,11 +218,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/nodes/common/db" />
       <recent name="$PROJECT_DIR$/test/resources/dummy/csv" />
       <recent name="$PROJECT_DIR$/core/nodes/ml" />
       <recent name="$PROJECT_DIR$/core/nodes/common" />
       <recent name="$PROJECT_DIR$/core/nodes/load/db" />
-      <recent name="$PROJECT_DIR$/core/nodes/extract" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -378,39 +352,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 16h 07m 16s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 09h 08m 06s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 16h 07m 59s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 09h 41m 19s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 16h 15m 19s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 09h 43m 19s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 16h 16m 57s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 12h 14m 19s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 16h 17m 59s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 12h 15m 34s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 16h 59m 02s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 12h 18m 48s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 17h 04m 27s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 12h 20m 56s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 17h 05m 19s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 12h 23m 40s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 17h 06m 32s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 12h 27m 43s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.15 at 17h 52m 42s.xml">
+    <history-entry file="Nosetests_for_test_DAGBuilder_TestDAGBuilder_test_get - 2021.09.17 at 12h 28m 20s.xml">
       <configuration name="Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="947" extended-state="1" />
+    <frame x="0" y="23" width="1680" height="947" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
@@ -421,8 +395,8 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32982457" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.36959064" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39415205" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36959064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -436,17 +410,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py</url>
-          <line>262</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/core/nodes/common/sql/reader.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -458,9 +421,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/core/nodes/extract/db/reader.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/common/connection.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/core/__init__.py">
@@ -635,13 +595,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/common/db/connection.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_DAGBuilder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        <state relative-caret-position="135">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/common/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/dag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="161" column="27" selection-start-line="161" selection-start-column="27" selection-end-line="161" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -652,44 +636,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/dag.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="131" column="30" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
-          <folding>
-            <element signature="e#374#410#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="36" column="39" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="39" />
+        <state relative-caret-position="363">
+          <caret line="73" column="23" lean-forward="true" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/factory.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-          <folding>
-            <element signature="e#200#248#0" expanded="true" />
-          </folding>
+          <caret line="22" column="77" selection-start-line="22" selection-start-column="77" selection-end-line="22" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="262" selection-start-line="262" selection-end-line="262" />
+        <state relative-caret-position="378">
+          <caret line="415" column="40" selection-start-line="415" selection-start-column="40" selection-end-line="415" selection-end-column="40" />
           <folding>
             <element signature="e#277#322#0" expanded="true" />
           </folding>

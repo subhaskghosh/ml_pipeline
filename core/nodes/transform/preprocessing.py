@@ -160,6 +160,9 @@ class DataFrameStringFilter(AbstructNode):
                 if c == 'like':
                     p = re.compile(v, flags=re.IGNORECASE)
                     tmp = tmp[[bool(p.search(x)) for x in tmp[column]]]
+                elif c == '==':
+                    tmp = tmp[tmp[column]==v]
+
         if not self.inplace:
             self.addToCache(self.output,tmp)
         else:
@@ -259,5 +262,155 @@ class DataFrameAppendColumn(AbstructNode):
         from_df = self.getFromCache(self.from_df_name)
         to_df = self.getFromCache(self.to_df_name)
         to_df[self.to_df_columns] = from_df[self.from_df_columns]
-
         self.addToCache(self.output, to_df)
+
+
+class DataFrameColumnOneHotEncoding(AbstructNode):
+    """One hot encode columns and append them back to df"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+
+        # validate parameters
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'columns not specified "{0}"'.format(parameter))
+
+        if 'from_variable' in self.parameter:
+            self.from_variable = self.parameter['from_variable']
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        if self.from_variable:
+            self.columns = self.getFromCache(self.columns)
+        df = self.getFromCache(self.input)
+        coded = pd.get_dummies(df[self.columns])
+        df[coded.columns] = coded.values
+        self.addToCache(self.output, df)
+
+
+class DataFrameNumericalFilter(AbstructNode):
+    """Filter rows by conditions"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'inplace' in self.parameter:
+            self.inplace = self.parameter['inplace']
+        else:
+            self.inplace = False
+
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'conditions' in self.parameter:
+            self.conditions = self.parameter['conditions']
+        else:
+            raise NodeConfigurationError(
+                'Filter conditions not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+
+        if not self.inplace:
+            tmp = df[self.columns]
+        else:
+            tmp = df
+
+        for condition_dict in self.conditions:
+            column = list(condition_dict.keys())[0]
+            criterias = list(condition_dict.values())[0]
+
+            for criteria in criterias:
+                c,v = criteria.split(' ')
+                try:
+                    v = ast.literal_eval(v)
+                except ValueError:
+                    v = str(v)
+                except SyntaxError:
+                    raise NodeConfigurationError(
+                        'Malformed "{0}"'.format(criteria))
+                if c == '>':
+                    tmp = tmp[tmp[column] > v]
+                elif c == '<':
+                    tmp = tmp[tmp[column] < v]
+                elif c == '>=':
+                    tmp = tmp[tmp[column] >= v]
+                elif c == '<=':
+                    tmp = tmp[tmp[column] <= v]
+                elif c == '!=':
+                    tmp = tmp[tmp[column] != v]
+                elif c == '==':
+                    tmp = tmp[tmp[column] == v]
+
+
+        if not self.inplace:
+            self.addToCache(self.output,tmp)
+        else:
+            df = tmp
+            self.addToCache(self.output,df)
+
+
+class DataFrameComparatorFilter(AbstructNode):
+    """Filter rows by comparing with list or dict"""
+
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+
+        if 'conditions' in self.parameter:
+            self.conditions = self.parameter['conditions']
+        else:
+            raise NodeConfigurationError(
+                'Filter conditions not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+
+        for condition_dict in self.conditions:
+            column = condition_dict['column']
+            comparator = condition_dict['comparator']
+            compare_with = condition_dict['compare_with']
+
+            if comparator == 'isin':
+                df = df[df[column].isin(compare_with)]
+            elif comparator == 'eq':
+                df = df[df[column].eq(compare_with)]
+            elif comparator == 'ne':
+                df = df[df[column].ne(compare_with)]
+            elif comparator == 'le':
+                df = df[df[column].le(compare_with)]
+            elif comparator == 'ge':
+                df = df[df[column].ge(compare_with)]
+            elif comparator == 'lt':
+                df = df[df[column].lt(compare_with)]
+            elif comparator == 'gt':
+                df = df[df[column].gt(compare_with)]
+
+        self.addToCache(self.output, df)
