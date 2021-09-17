@@ -23,6 +23,10 @@ class NodeFactory(object):
             'transform.dataframe.filter.numerical': 'DataFrameNumericalFilter',
             'transform.dataframe.filter.compare': 'DataFrameComparatorFilter',
             'common.add.variable': 'AddVariables',
+            'transform.dataframe.reset_index': 'DataFrameResetIndex',
+            'transform.simple.imputation': 'DataFrameSimpleImputation',
+            'transform.detect.outlier': 'DataFrameDetectOutlier',
+            'transform.remove.outlier': 'DataFrameRemoveOutlier'
         }
 
     def get(self, name, parameter, input, output):

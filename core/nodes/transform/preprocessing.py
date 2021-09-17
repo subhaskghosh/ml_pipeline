@@ -7,7 +7,7 @@ Table generation:
 """
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
-from sklearn.impute import KNNImputer
+from sklearn.impute import KNNImputer, SimpleImputer
 import pandas as pd
 import numpy as np
 import ast
@@ -263,6 +263,27 @@ class DataFrameAppendColumn(AbstructNode):
         to_df = self.getFromCache(self.to_df_name)
         to_df[self.to_df_columns] = from_df[self.from_df_columns]
         self.addToCache(self.output, to_df)
+        # raw = to_df
+        # ignore_columns = [col for col in raw.columns if any(ign in col for ign in ['_ID', 'DATE'])]
+        # ignore_columns += ['DNA_CUSTOM_DC_ISR_LED', 'DNA_STD_DC_OPPTY_STAGE_NAME', 'DNA_STD_DC_OPPTY_PROBABILITY',
+        #                    'DNA_STD_DC_LEAD_SOURCE_INBOUND', 'DNA_STD_AC_ANNUAL_REVENUE',
+        #                    'DNA_STD_AC_NUMBER_OF_EMPLOYEES', 'COUNT_C', 'CUSTOMER_GOALS_AND_OBJECTIVES_C',
+        #                    'DISCOVERY_GRADE_C', 'DISCOVERY_POINTS_C', 'PRODUCTS_WITH_BUNDLE_FEATURE_CLOUD_ON_C',
+        #                    'QBDIALER_DIALS_C', 'SEGMENT_REVENUE_C', 'USR_BADGE_TEXT', 'USR_PARTNER_EVENTS',
+        #                    'USR_PARTNER_TASKS', 'USR_PARTNER_TYPE_C', 'WHAT_COULD_WE_DO_DIFFERENTLY_C',
+        #                    'WHAT_DID_WE_DO_WELL_C']
+        # cat_columns = sorted(list(set(raw.columns[raw.dtypes == 'object']) - set(ignore_columns)))
+        # bool_columns = sorted(list(set(raw.columns[raw.dtypes == 'bool']) - set(ignore_columns)))
+        # one_hot_cols = ['PARTNER_LEVEL_OF_INVOLVEMENT_CALC_C']
+        # numeric_columns = sorted(list(set(raw.columns) - set(ignore_columns) - set(bool_columns) - set(cat_columns)))
+        # useful_columns = sorted(cat_columns + bool_columns + numeric_columns)
+        #
+        # print(f"'ignore_columns':{ignore_columns}, " +
+        #       f"'cat_columns': {cat_columns}, " +
+        #       f"'bool_columns': {bool_columns}, " +
+        #       f"'one_hot_cols': {one_hot_cols}, " +
+        #       f"'numeric_columns': {numeric_columns}, "+
+        #       f"'useful_columns': {useful_columns}")
 
 
 class DataFrameColumnOneHotEncoding(AbstructNode):
@@ -414,3 +435,178 @@ class DataFrameComparatorFilter(AbstructNode):
                 df = df[df[column].gt(compare_with)]
 
         self.addToCache(self.output, df)
+
+class DataFrameResetIndex(AbstructNode):
+    """Reset Index"""
+
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+
+        if 'drop' in self.parameter:
+            self.drop = self.parameter['drop']
+
+        if 'inplace' in self.parameter:
+            self.inplace = self.parameter['inplace']
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+        df.reset_index(drop=self.drop, inplace=self.inplace)
+        self.addToCache(self.output, df)
+
+class DataFrameSimpleImputation(AbstructNode):
+    """Simple Imputation"""
+
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'strategy' in self.parameter:
+            self.strategy = self.parameter['strategy']
+        else:
+            raise NodeConfigurationError(
+                'Strategy not specified "{0}"'.format(parameter))
+
+        if 'from_variable' in self.parameter:
+            self.from_variable = self.parameter['from_variable']
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        if self.from_variable:
+            self.columns = self.getFromCache(self.columns)
+        df = self.getFromCache(self.input)
+        imputer = SimpleImputer(strategy=self.strategy)
+        imputed = imputer.fit_transform(df[self.columns])
+        data_imputed = pd.DataFrame(imputed, columns=self.columns)
+        self.addToCache(self.output, data_imputed)
+
+class DataFrameDetectOutlier(AbstructNode):
+    """Detect outlier on numerical columns"""
+
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        # validate parameters
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'quantile' in self.parameter:
+            self.quantile = self.parameter['quantile']
+        else:
+            raise NodeConfigurationError(
+                'Quantile not specified "{0}"'.format(parameter))
+
+        if 'interpolation' in self.parameter:
+            self.interpolation = self.parameter['interpolation']
+        else:
+            raise NodeConfigurationError(
+                'Interpolation method not specified "{0}"'.format(parameter))
+
+        if 'outlier_column' in self.parameter:
+            self.outlier_column = self.parameter['outlier_column']
+        else:
+            self.outlier_column = 'sum'
+
+        if 'from_variable' in self.parameter:
+            self.from_variable = self.parameter['from_variable']
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        if self.from_variable:
+            self.columns = self.getFromCache(self.columns)
+        df = self.getFromCache(self.input)
+
+        qtile = df[self.columns].quantile(q=self.quantile, interpolation=self.interpolation)
+        outlier = (df[self.columns] < qtile.loc[self.quantile[0], self.columns]) | (df[self.columns] > qtile.loc[self.quantile[1], self.columns])
+        outlier = outlier.astype(int)
+        outlier[self.outlier_column] = outlier.sum(axis=1)
+        self.addToCache(self.output, outlier)
+
+class DataFrameRemoveOutlier(AbstructNode):
+    """Detect outlier on numerical columns"""
+
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        # validate parameters
+        if 'outlier_column' in self.parameter:
+            self.outlier_column = self.parameter['outlier_column']
+        else:
+            raise NodeConfigurationError(
+                'outlier column name not specified "{0}"'.format(parameter))
+
+        if 'outlier_condition' in self.parameter:
+            self.outlier_condition = self.parameter['outlier_condition']
+        else:
+            raise NodeConfigurationError(
+                'outlier condition not specified "{0}"'.format(parameter))
+
+        if 'from_df' in self.parameter:
+            self.from_df = self.parameter['from_df']
+        else:
+            raise NodeConfigurationError(
+                'from_df not specified "{0}"'.format(parameter))
+
+        if 'using_outlier_df' in self.parameter:
+            self.using_outlier_df = self.parameter['using_outlier_df']
+        else:
+            raise NodeConfigurationError(
+                'using_outlier_df not specified "{0}"'.format(parameter))
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        from_df = self.getFromCache(self.from_df)
+        using_outlier_df = self.getFromCache(self.using_outlier_df)
+
+        c, v = self.outlier_condition.split(' ')
+        try:
+            v = ast.literal_eval(v)
+        except ValueError:
+            v = str(v)
+        except SyntaxError:
+            raise NodeConfigurationError(
+                'Malformed "{0}"'.format(self.outlier_condition))
+        if c == '<':
+            df = from_df[(using_outlier_df[self.outlier_column] < v)]
+        elif c == '>':
+            df = from_df[(using_outlier_df[self.outlier_column] > v)]
+        elif c == '<=':
+            df = from_df[(using_outlier_df[self.outlier_column] <= v)]
+        elif c == '>=':
+            df = from_df[(using_outlier_df[self.outlier_column] >= v)]
+
+        self.addToCache(self.output, df)
+
