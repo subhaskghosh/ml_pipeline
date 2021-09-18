@@ -5,6 +5,8 @@ Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
 Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
+from sklearn.preprocessing import PowerTransformer
+
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
 from sklearn.impute import KNNImputer, SimpleImputer
@@ -250,40 +252,34 @@ class DataFrameAppendColumn(AbstructNode):
             raise NodeConfigurationError(
                 'to_df_columns not specified "{0}"'.format(parameter))
 
-        if len(self.from_df_columns) != len(self.to_df_columns):
-            raise NodeConfigurationError(
-                'Number of columns must be same "{0}"'.format(parameter))
+        if 'from_df_columns_from_variable' in self.parameter:
+            self.from_df_columns_from_variable = self.parameter['from_df_columns_from_variable']
+        else:
+            self.from_df_columns_from_variable = None
+
+        if 'to_df_columns_from_variable' in self.parameter:
+            self.to_df_columns_from_variable = self.parameter['to_df_columns_from_variable']
+        else:
+            self.to_df_columns_from_variable = None
 
         if self.output == None:
             raise NodeConfigurationError(
                 'Output can not be None')
 
     def execute(self):
+        if self.from_df_columns_from_variable:
+            self.from_df_columns = self.getFromCache(self.from_df_columns)
+
+        if self.to_df_columns_from_variable:
+            self.to_df_columns = self.getFromCache(self.to_df_columns)
+
+        if len(self.from_df_columns) != len(self.to_df_columns):
+            raise NodeConfigurationError(
+                'Number of columns must be same')
         from_df = self.getFromCache(self.from_df_name)
         to_df = self.getFromCache(self.to_df_name)
-        to_df[self.to_df_columns] = from_df[self.from_df_columns]
+        to_df[list(self.to_df_columns)] = from_df[list(self.from_df_columns)]
         self.addToCache(self.output, to_df)
-        # raw = to_df
-        # ignore_columns = [col for col in raw.columns if any(ign in col for ign in ['_ID', 'DATE'])]
-        # ignore_columns += ['DNA_CUSTOM_DC_ISR_LED', 'DNA_STD_DC_OPPTY_STAGE_NAME', 'DNA_STD_DC_OPPTY_PROBABILITY',
-        #                    'DNA_STD_DC_LEAD_SOURCE_INBOUND', 'DNA_STD_AC_ANNUAL_REVENUE',
-        #                    'DNA_STD_AC_NUMBER_OF_EMPLOYEES', 'COUNT_C', 'CUSTOMER_GOALS_AND_OBJECTIVES_C',
-        #                    'DISCOVERY_GRADE_C', 'DISCOVERY_POINTS_C', 'PRODUCTS_WITH_BUNDLE_FEATURE_CLOUD_ON_C',
-        #                    'QBDIALER_DIALS_C', 'SEGMENT_REVENUE_C', 'USR_BADGE_TEXT', 'USR_PARTNER_EVENTS',
-        #                    'USR_PARTNER_TASKS', 'USR_PARTNER_TYPE_C', 'WHAT_COULD_WE_DO_DIFFERENTLY_C',
-        #                    'WHAT_DID_WE_DO_WELL_C']
-        # cat_columns = sorted(list(set(raw.columns[raw.dtypes == 'object']) - set(ignore_columns)))
-        # bool_columns = sorted(list(set(raw.columns[raw.dtypes == 'bool']) - set(ignore_columns)))
-        # one_hot_cols = ['PARTNER_LEVEL_OF_INVOLVEMENT_CALC_C']
-        # numeric_columns = sorted(list(set(raw.columns) - set(ignore_columns) - set(bool_columns) - set(cat_columns)))
-        # useful_columns = sorted(cat_columns + bool_columns + numeric_columns)
-        #
-        # print(f"'ignore_columns':{ignore_columns}, " +
-        #       f"'cat_columns': {cat_columns}, " +
-        #       f"'bool_columns': {bool_columns}, " +
-        #       f"'one_hot_cols': {one_hot_cols}, " +
-        #       f"'numeric_columns': {numeric_columns}, "+
-        #       f"'useful_columns': {useful_columns}")
 
 
 class DataFrameColumnOneHotEncoding(AbstructNode):
@@ -297,6 +293,11 @@ class DataFrameColumnOneHotEncoding(AbstructNode):
         else:
             raise NodeConfigurationError(
                 'columns not specified "{0}"'.format(parameter))
+
+        if 'save_ohe_column_names_as' in self.parameter:
+            self.save_ohe_column_names_as = self.parameter['save_ohe_column_names_as']
+        else:
+            self.save_ohe_column_names_as = 'ohe_cols'
 
         if 'from_variable' in self.parameter:
             self.from_variable = self.parameter['from_variable']
@@ -313,9 +314,10 @@ class DataFrameColumnOneHotEncoding(AbstructNode):
         if self.from_variable:
             self.columns = self.getFromCache(self.columns)
         df = self.getFromCache(self.input)
-        coded = pd.get_dummies(df[self.columns])
+        coded = pd.get_dummies(df[self.columns].astype(str))
         df[coded.columns] = coded.values
         self.addToCache(self.output, df)
+        self.addToCache(self.save_ohe_column_names_as, coded.columns)
 
 
 class DataFrameNumericalFilter(AbstructNode):
@@ -609,4 +611,124 @@ class DataFrameRemoveOutlier(AbstructNode):
             df = from_df[(using_outlier_df[self.outlier_column] >= v)]
 
         self.addToCache(self.output, df)
+
+class DataFramePowerTransform(AbstructNode):
+    """Normalize"""
+
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        # validate parameters
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'method' in self.parameter:
+            self.method = self.parameter['method']
+        else:
+            raise NodeConfigurationError(
+                'Method not specified "{0}"'.format(parameter))
+
+        if 'from_variable' in self.parameter:
+            self.from_variable = self.parameter['from_variable']
+        else:
+            self.from_variable = None
+
+        if 'reshape' in self.parameter:
+            self.reshape = self.parameter['reshape']
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        if self.from_variable:
+            self.columns = self.getFromCache(self.columns)
+
+        df = self.getFromCache(self.input)
+        pt = PowerTransformer(method=self.method)
+        idf = df[self.columns]
+
+        if self.reshape:
+            idf = idf.values.reshape(self.reshape[0], self.reshape[1])
+
+        tdf = pt.fit_transform(idf)
+        ndf = pd.DataFrame(tdf, columns=self.columns, index=df.index)
+
+        self.addToCache(self.output, ndf)
+
+class DataFrameBooleanFilter(AbstructNode):
+    """Filter rows by conditions"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'inplace' in self.parameter:
+            self.inplace = self.parameter['inplace']
+        else:
+            self.inplace = False
+
+        if 'condition_df' in self.parameter:
+            self.condition_df = self.parameter['condition_df']
+        else:
+            raise NodeConfigurationError(
+                'condition_df not specified "{0}"'.format(parameter))
+
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'conditions' in self.parameter:
+            self.conditions = self.parameter['conditions']
+        else:
+            raise NodeConfigurationError(
+                'Filter conditions not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+        condition_df = self.getFromCache(self.condition_df)
+
+        if not self.inplace:
+            tmp = df[self.columns]
+        else:
+            tmp = df
+
+        for condition_dict in self.conditions:
+            column = list(condition_dict.keys())[0]
+            criterias = list(condition_dict.values())[0]
+
+            for criteria in criterias:
+                c,v = criteria.split(' ')
+                try:
+                    v = ast.literal_eval(v)
+                except ValueError:
+                    v = str(v)
+                except SyntaxError:
+                    raise NodeConfigurationError(
+                        'Malformed "{0}"'.format(criteria))
+                if c == '!=':
+                    tmp = tmp[condition_df[column]!=v]
+                elif c == '==':
+                    tmp = tmp[condition_df[column]==v]
+
+        if not self.inplace:
+            self.addToCache(self.output,tmp)
+        else:
+            df = tmp
+            self.addToCache(self.output,df)
 

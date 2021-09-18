@@ -121,16 +121,17 @@ class Dag(object):
         '''Get all the terminating vertices'''
         return self.endpoints(self.outdegree)
 
-    def show(self, options=None):
+    def show(self, options=None, save=True, path=None):
         import matplotlib.pyplot as plt
-        plt.figure(figsize=(12, 12), dpi=80)
+        num_nodes = self.vertex_size()
+        plt.figure(figsize=(10, num_nodes), dpi=80)
 
         if not options:
             self.options = {
                 'arrowstyle': '->',
-                'arrowsize': 20,
-                "font_size": 9,
-                "node_size": 450,
+                'arrowsize': 22,
+                "font_size": 10,
+                "node_size": 350,
                 "node_color": "white",
                 "edgecolors": "black",
                 "linewidths": 2,
@@ -159,7 +160,7 @@ class Dag(object):
             elabels[v] = str(v)
 
         for k, v in pos.items():
-            lpos[k] = (v[0],v[1])
+            lpos[k] = (v[0]+0.005,v[1])
             tpos[k] = (v[0],v[1]+0.06)
 
         nx.draw_networkx_labels(self.graph, lpos, labels, **self.options)
@@ -168,9 +169,16 @@ class Dag(object):
 
         ax = plt.gca()
         ax.set_title(f'{self.pipelinetype} pipeline for {self.customer}')
-        ax.margins(0.20)
+        #ax.margins(0.20)
         plt.axis("off")
-        plt.show()
+
+        if save:
+            import os
+            plt.savefig(os.path.join(path,f'{self.customer}_{self.pipelinetype}'), dpi=600)
+            plt.clf()
+        else:
+            plt.show()
+            plt.clf()
 
     def process_vertices(self, vertices_to_run, vertices_running, processor, executor):
         def execute_func(param):
@@ -223,7 +231,7 @@ class Dag(object):
 
         return result
 
-    def hierarchy_pos(self, root=None, width=1., vert_gap=0.2, vert_loc=0.0, xcenter=0.5):
+    def hierarchy_pos(self, root=None, width=1., vert_gap=0.2, vert_loc=0.0, xcenter=0.0):
         if len(list(self.all_starts())) > 1:
             from networkx.drawing.nx_pydot import graphviz_layout
             return graphviz_layout(self.graph, prog="dot")
@@ -233,7 +241,7 @@ class Dag(object):
         if not nx.is_tree(self.graph):
             raise TypeError('cannot use hierarchy_pos on a graph that is not a tree')
 
-        def _hierarchy_pos(G, root, width=1., vert_gap=0.2, vert_loc=0.0, xcenter=0.5, pos=None, parent=None):
+        def _hierarchy_pos(G, root, width=1., vert_gap=0.2, vert_loc=0.0, xcenter=0.0, pos=None, parent=None):
 
             if pos is None:
                 pos = {root: (xcenter, vert_loc)}

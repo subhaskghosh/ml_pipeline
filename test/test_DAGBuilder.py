@@ -9,5 +9,5 @@ class TestDAGBuilder(TestCase):
         dag = db.get()
         r = dag.run()
         #print(r.get_payload())
-        #dag.show()
+        #dag.show(path='./resources/dummy/')
         pass

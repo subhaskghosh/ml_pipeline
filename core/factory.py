@@ -26,7 +26,9 @@ class NodeFactory(object):
             'transform.dataframe.reset_index': 'DataFrameResetIndex',
             'transform.simple.imputation': 'DataFrameSimpleImputation',
             'transform.detect.outlier': 'DataFrameDetectOutlier',
-            'transform.remove.outlier': 'DataFrameRemoveOutlier'
+            'transform.remove.outlier': 'DataFrameRemoveOutlier',
+            'transform.dataframe.powertransform': 'DataFramePowerTransform',
+            'transform.dataframe.boolean.filter': 'DataFrameBooleanFilter'
         }
 
     def get(self, name, parameter, input, output):
