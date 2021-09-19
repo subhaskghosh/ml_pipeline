@@ -732,3 +732,23 @@ class DataFrameBooleanFilter(AbstructNode):
             df = tmp
             self.addToCache(self.output,df)
 
+class DataFrameConcat(AbstructNode):
+    """Filter rows by conditions"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'dfs' in self.parameter:
+            self.dfs = self.parameter['dfs']
+        else:
+            raise NodeConfigurationError(
+                'Dataframes to concat not specified "{0}"'.format(parameter))
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        dfs = [self.getFromCache(df_name) for df_name in self.dfs]
+        df = pd.concat(dfs)
+        self.addToCache(self.output, df)
+

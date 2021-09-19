@@ -6,6 +6,8 @@ Table generation:
 """
 from core.nodes.common.generic import *
 from core.nodes.extract.file.csv_reader import *
+from core.nodes.load.file.csv_writer import CSVFIleWriterNode
+from core.nodes.ml.clustering.kmeans import KMeansClustering
 from core.nodes.node import AbstructNode
 from core.nodes.transform.preprocessing import *
 
@@ -28,7 +30,11 @@ class NodeFactory(object):
             'transform.detect.outlier': 'DataFrameDetectOutlier',
             'transform.remove.outlier': 'DataFrameRemoveOutlier',
             'transform.dataframe.powertransform': 'DataFramePowerTransform',
-            'transform.dataframe.boolean.filter': 'DataFrameBooleanFilter'
+            'transform.dataframe.boolean.filter': 'DataFrameBooleanFilter',
+            'common.union.columns': 'UnionColumnNames',
+            'ml.clustering.kmeans': 'KMeansClustering',
+            'transform.dataframe.concat': 'DataFrameConcat',
+            'load.csv': 'CSVFIleWriterNode'
         }
 
     def get(self, name, parameter, input, output):

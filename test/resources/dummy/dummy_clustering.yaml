@@ -243,5 +243,43 @@
           conditions: ["DNA_STD_DC_END_RESULT": ["== False"]]
         input: n_data
         output: n_data_loss
-    -
-
+    - common.union.columns:
+        parameter:
+          cached_variables: ['numeric_p2', 'ohe_cols']
+          lhs_variable_name: 'features'
+        input: null
+        output: null
+    - ml.clustering.kmeans:
+        parameter:
+          n_clusters: 3
+          n_init: 100
+          algorithm: 'full'
+          fit_df: n_data_wins
+          fit_df_columns: features
+          from_variable: yes
+          predict: {'classification_wins': {'df': n_data_wins,'cols': features}, 'classification_loss': {'df': n_data_loss,'cols': features}}
+          update_df_with_prediction: {'data_sans_wins': {'df': data_sans_wins, 'label':'classification_label', 'using': classification_wins}, 'data_sans_loss': {'df': data_sans_loss, 'label':'classification_label', 'using': classification_loss}, 'n_data_wins': {'df': n_data_wins, 'label':'classification_label', 'using':'classification_wins'}, 'n_data_loss': {'df': n_data_loss, 'label':'classification_label', 'using':'classification_loss'}}
+        input: null
+        output: null
+    - transform.dataframe.concat:
+        parameter:
+          dfs: [data_sans_wins, data_sans_loss]
+        input: null
+        output: kmeans_labeled
+    - transform.dataframe.concat:
+        parameter:
+          dfs: [n_data_wins, n_data_loss]
+        input: null
+        output: n_kmeans_labeled
+    - load.csv:
+        parameter:
+          path: "./resources/dummy/csv/clusters_lands_70K_amer_com_strategic.csv"
+          index: false
+        input: kmeans_labeled
+        output: null
+    - load.csv:
+        parameter:
+          path: "./resources/dummy/csv/n_clusters_lands_70K_amer_com_strategic.csv"
+          index: false
+        input: n_kmeans_labeled
+        output: null
