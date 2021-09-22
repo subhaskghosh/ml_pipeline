@@ -16,10 +16,11 @@ class DAGBuilder(object):
     traverses through the dict to generate an
     executable dag
     """
-    def __init__(self, path=None):
+    def __init__(self, path=None, param=None):
         self.dag = None
-        self.cb = ConfigBuilder(path)
+        self.cb = ConfigBuilder(path, param)
         self.config = self.cb.get()
+        self.cb.show()
         self.nf = NodeFactory()
         nodes = []
 

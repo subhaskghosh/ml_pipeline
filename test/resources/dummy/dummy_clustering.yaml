@@ -3,6 +3,14 @@
 - pipelineMeta:
     customer: Dummy
     type: Clustering
+    run_date: !Var run_date
+    run_id: !UUID
+    cluster_size: 3
+    features: numeric_p1
+    notes: 'clusters on lands for more than 70K opp in amer-com'
+    current_date: !Date today
+    hyperparameters: null
+    results: null
 - stages:
     - extract.csv:
         parameter:
@@ -126,7 +134,7 @@
         output: data
     - transform.dataframe.powertransform: # make data more Gaussian-like as normality is desired
         parameter:
-          columns: numeric_p2
+          columns: numeric_p1
           from_variable: yes
           method: 'yeo-johnson'
           reshape: null
@@ -259,6 +267,9 @@
           from_variable: yes
           predict: {'classification_wins': {'df': n_data_wins,'cols': features}, 'classification_loss': {'df': n_data_loss,'cols': features}}
           update_df_with_prediction: {'data_sans_wins': {'df': data_sans_wins, 'label':'classification_label', 'using': classification_wins}, 'data_sans_loss': {'df': data_sans_loss, 'label':'classification_label', 'using': classification_loss}, 'n_data_wins': {'df': n_data_wins, 'label':'classification_label', 'using':'classification_wins'}, 'n_data_loss': {'df': n_data_loss, 'label':'classification_label', 'using':'classification_loss'}}
+          score: {'df': n_data_wins, 'label':'classification_label', 'cols': features}
+          mode: save
+          model_path: "./resources/dummy/model/kmeans.pkl"
         input: null
         output: null
     - transform.dataframe.concat:

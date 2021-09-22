@@ -35,7 +35,7 @@ class CSVFIleReaderNode(AbstructNode):
         '''read file from path and create a df with name specified by output'''
         if self.dtype_json_path:
             self.csv_dtype = json.load(self.dtype_json_path)
-            df = pd.read_csv(self.path, dtype=self.csv_dtype)
+            df = pd.read_csv(self.path, dtype=self.csv_dtype, low_memory=False)
         else:
-            df = pd.read_csv(self.path)
+            df = pd.read_csv(self.path, low_memory=False)
         self.addToCache(self.output,df)

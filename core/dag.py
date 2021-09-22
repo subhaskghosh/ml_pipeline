@@ -10,12 +10,14 @@ Table generation:
 from core.cache import SimpleCache
 from core.error import *
 import networkx as nx
-
+import logging
 from core.executor import Executor
 from core.nodes.node import AbstructNode
 from core.processor import Processor
 from core.selector import Selector
 
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 def call_method(instance, method, *args, **kwargs):
     try:
@@ -58,6 +60,7 @@ class Dag(object):
         self.validate_vertex(u, *vs)
         for v_to in vs:
             if self.has_path_to(v_to, u):  # pylint: disable=arguments-out-of-order
+                logging.exception('Cycle if add edge from "{0}" to "{1}"'.format(u, v_to))
                 raise DAGCycleError(
                     'Cycle if add edge from "{0}" to "{1}"'.format(u, v_to))
             self.graph.add_edge(u, v_to)
@@ -69,6 +72,7 @@ class Dag(object):
     def validate_vertex(self, *vertices):
         for vtx in vertices:
             if vtx not in self.graph.nodes:
+                logging.exception('Vertex "{0}" does not belong to DAG'.format(vtx))
                 raise DAGVertexNotFoundError(
                     'Vertex "{0}" does not belong to DAG'.format(vtx))
 

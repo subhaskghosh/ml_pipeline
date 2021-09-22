@@ -6,9 +6,10 @@ Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
 from sklearn.cluster import KMeans
-
+from sklearn.metrics import silhouette_score
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
+import pickle
 
 class KMeansClustering(AbstructNode):
     """KMeans Clustering"""
@@ -58,14 +59,38 @@ class KMeansClustering(AbstructNode):
         else:
             self.update_df_with_prediction = None
 
+        if 'score' in self.parameter:
+            self.score = self.parameter['score']
+        else:
+            self.score = None
+
+        if 'mode' in self.parameter:
+            self.mode = self.parameter['mode']
+        else:
+            raise NodeConfigurationError(
+                'Mode as save or load must be specified "{0}"'.format(parameter))
+
+        if 'model_path' in self.parameter:
+            self.model_path = self.parameter['model_path']
+        else:
+            raise NodeConfigurationError(
+                'Model path must be specified "{0}"'.format(parameter))
+
     def execute(self):
         if self.from_variable:
             self.fit_df_columns = self.getFromCache(self.fit_df_columns)
         df = self.getFromCache(self.fit_df)
 
         km = KMeans
-        km_obj = km(n_clusters=self.n_clusters, n_init=self.n_init, algorithm=self.algorithm)
-        km_obj.fit(df[self.fit_df_columns])
+
+        if self.mode == "save":
+            km_obj = km(n_clusters=self.n_clusters, n_init=self.n_init, algorithm=self.algorithm)
+            km_obj.fit(df[self.fit_df_columns])
+            with open(self.model_path, 'wb') as f:
+                pickle.dump(km_obj, f)
+        else:
+            with open(self.model_path, 'rb') as f:
+                km_obj = pickle.load(f)
 
         for k,v in self.predict.items():
             d = self.getFromCache(v['df'])
@@ -79,3 +104,11 @@ class KMeansClustering(AbstructNode):
             a = self.getFromCache(v['using'])
             d.loc[:, l] = a
             self.addToCache(k, d)
+
+        if self.score:
+            d = self.getFromCache(self.score['df'])
+            l = self.score['label']
+            c = self.getFromCache(self.score['cols'])
+            score = silhouette_score(d[c], d[l])
+            print(f'Score: {score}')
+            self.addToCache('score', score)
