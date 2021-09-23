@@ -6,9 +6,10 @@ Table generation:
 """
 from core.nodes.common.generic import *
 from core.nodes.extract.file.csv_reader import *
-from core.nodes.load.file.csv_writer import CSVFIleWriterNode
-from core.nodes.ml.clustering.kmeans import KMeansClustering
-from core.nodes.node import AbstructNode
+from core.nodes.info.profiler import *
+from core.nodes.load.file.csv_writer import *
+from core.nodes.ml.clustering.kmeans import *
+from core.nodes.node import *
 from core.nodes.transform.preprocessing import *
 
 class NodeFactory(object):
@@ -34,7 +35,8 @@ class NodeFactory(object):
             'common.union.columns': 'UnionColumnNames',
             'ml.clustering.kmeans': 'KMeansClustering',
             'transform.dataframe.concat': 'DataFrameConcat',
-            'load.csv': 'CSVFIleWriterNode'
+            'load.csv': 'CSVFIleWriterNode',
+            'info.profiler': 'DataFrameProfiler'
         }
 
     def get(self, name, parameter, input, output):

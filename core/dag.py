@@ -39,9 +39,12 @@ class Dag(object):
         self.processor = Processor()
         self.executor = Executor()
         self.cache = SimpleCache()
-        if meta:
+        self.meta = meta
+        if self.meta:
             self.customer = meta['customer']
             self.pipelinetype = meta['type']
+            for k,v in meta.items():
+                self.cache.update(k,v)
 
     def getCache(self):
         return self.cache
@@ -233,7 +236,9 @@ class Dag(object):
                     if indegree_dict[v_to] == 0:
                         vertices_zero_indegree.add(v_to)
 
-        return result
+        self.update_meta()
+
+        return self.meta
 
     def hierarchy_pos(self, root=None, width=1., vert_gap=0.2, vert_loc=0.0, xcenter=0.0):
         if len(list(self.all_starts())) > 1:
@@ -265,3 +270,10 @@ class Dag(object):
             return pos
 
         return _hierarchy_pos(self.graph, self.root, width, vert_gap, vert_loc, xcenter)
+
+    def update_meta(self):
+        if self.meta:
+            for k,v in self.meta.items():
+                self.meta[k] = self.cache.get(k)
+        else:
+            self.meta = None

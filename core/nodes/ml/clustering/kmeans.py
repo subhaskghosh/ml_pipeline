@@ -6,10 +6,12 @@ Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
 from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import silhouette_score, adjusted_rand_score, homogeneity_score, completeness_score, \
+    v_measure_score, adjusted_mutual_info_score, calinski_harabasz_score, davies_bouldin_score
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
 import pickle
+import pandas as pd
 
 class KMeansClustering(AbstructNode):
     """KMeans Clustering"""
@@ -27,6 +29,18 @@ class KMeansClustering(AbstructNode):
         else:
             raise NodeConfigurationError(
                 'Number of time the k-means algorithm will be run with different centroid seeds is not specified "{0}"'.format(parameter))
+
+        if 'random_state' in self.parameter:
+            self.random_state = self.parameter['random_state']
+        else:
+            raise NodeConfigurationError(
+                'random_state is not specified "{0}"'.format(parameter))
+
+        if 'max_iter' in self.parameter:
+            self.max_iter = self.parameter['max_iter']
+        else:
+            raise NodeConfigurationError(
+                'max_iter is not specified "{0}"'.format(parameter))
 
         if 'algorithm' in self.parameter:
             self.algorithm = self.parameter['algorithm']
@@ -84,7 +98,13 @@ class KMeansClustering(AbstructNode):
         km = KMeans
 
         if self.mode == "save":
-            km_obj = km(n_clusters=self.n_clusters, n_init=self.n_init, algorithm=self.algorithm)
+            km_obj = km(init='k-means++',
+                        n_clusters=self.n_clusters,
+                        n_init=self.n_init,
+                        algorithm=self.algorithm,
+                        max_iter=self.max_iter,
+                        tol=1e-7,
+                        random_state=self.random_state)
             km_obj.fit(df[self.fit_df_columns])
             with open(self.model_path, 'wb') as f:
                 pickle.dump(km_obj, f)
@@ -105,10 +125,37 @@ class KMeansClustering(AbstructNode):
             d.loc[:, l] = a
             self.addToCache(k, d)
 
+        results = {}
         if self.score:
-            d = self.getFromCache(self.score['df'])
-            l = self.score['label']
-            c = self.getFromCache(self.score['cols'])
-            score = silhouette_score(d[c], d[l])
-            print(f'Score: {score}')
-            self.addToCache('score', score)
+            if 'silhouette_score' in self.score:
+                sscore = self.score['silhouette_score']
+                d = self.getFromCache(sscore['df'])
+                l = sscore['label']
+                c = self.getFromCache(sscore['cols'])
+
+                score = silhouette_score(d[c], d[l])
+
+                results['silhouette_score'] = score
+
+            if 'calinski_harabasz_score' in self.score:
+                sscore = self.score['calinski_harabasz_score']
+                d = self.getFromCache(sscore['df'])
+                l = sscore['label']
+                c = self.getFromCache(sscore['cols'])
+
+                score = calinski_harabasz_score(d[c], d[l])
+
+                results['calinski_harabasz_score'] = score
+
+            if 'davies_bouldin_score' in self.score:
+                sscore = self.score['davies_bouldin_score']
+                d = self.getFromCache(sscore['df'])
+                l = sscore['label']
+                c = self.getFromCache(sscore['cols'])
+
+                score = davies_bouldin_score(d[c], d[l])
+
+                results['davies_bouldin_score'] = score
+
+            if 'update_cache' in self.score:
+                self.addToCache(self.score['update_cache'], results)
