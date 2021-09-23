@@ -14,7 +14,7 @@
 - stages:
     - extract.csv:
         parameter:
-          path: "./resources/dummy/csv/dummy.csv"
+          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/csv/dummy.csv"
         input: null
         output: raw
     - transform.column_name.upper:
@@ -274,7 +274,7 @@
                   'davies_bouldin_score': {'df': n_data_wins, 'label':'classification_label', 'cols': features},
                   'update_cache': 'results'}
           mode: save
-          model_path: "./resources/dummy/model/kmeans.pkl"
+          model_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/kmeans.pkl"
         input: null
         output: null
     - transform.dataframe.concat:
@@ -289,13 +289,13 @@
         output: n_kmeans_labeled
     - load.csv:
         parameter:
-          path: "./resources/dummy/csv/clusters_lands_70K_amer_com_strategic.csv"
+          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/csv_output/clusters_lands_70K_amer_com_strategic.csv"
           index: false
         input: kmeans_labeled
         output: null
     - load.csv:
         parameter:
-          path: "./resources/dummy/csv/n_clusters_lands_70K_amer_com_strategic.csv"
+          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/csv_output/n_clusters_lands_70K_amer_com_strategic.csv"
           index: false
         input: n_kmeans_labeled
         output: null
