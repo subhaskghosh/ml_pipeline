@@ -8,6 +8,8 @@ Table generation:
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, adjusted_rand_score, homogeneity_score, completeness_score, \
     v_measure_score, adjusted_mutual_info_score, calinski_harabasz_score, davies_bouldin_score
+from sklearn.preprocessing import StandardScaler
+
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
 import pickle
@@ -103,13 +105,16 @@ class KMeansClustering(AbstructNode):
                         n_init=self.n_init,
                         algorithm=self.algorithm,
                         max_iter=self.max_iter,
-                        tol=1e-7,
+                        tol=1e-10,
                         random_state=self.random_state)
-            km_obj.fit(df[self.fit_df_columns])
+            X = df[self.fit_df_columns]
+            km_obj.fit(X)
             with open(self.model_path, 'wb') as f:
+                print('Saving Model...\n\n')
                 pickle.dump(km_obj, f)
         else:
             with open(self.model_path, 'rb') as f:
+                print('Loding Model...\n\n')
                 km_obj = pickle.load(f)
 
         for k,v in self.predict.items():

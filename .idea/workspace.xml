@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9e60191d-1d9f-4141-99df-29eefe8f3786" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/cli/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/cli/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/info/profiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/info/profiler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/dummy/model/kmeans.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/model/kmeans.pkl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +16,38 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2899">
+              <caret line="54" column="16381" selection-end-line="307" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering_predict.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="275" column="23" selection-start-line="275" selection-start-column="23" selection-end-line="275" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+              <folding>
+                <element signature="e#260#294#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -33,7 +68,13 @@
       <find>WINS</find>
       <find>DNA_STD_DC_END_RESULT</find>
       <find>PARTNER_LEVEL_OF_INVOLVEMENT_CALC_C</find>
+      <find>info</find>
+      <find>DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT</find>
+      <find>&quot;DNA_STD_AC_NUMBER_OF_EMPLOYEES&quot;</find>
+      <find>DNA_STD_AC_NUMBER_OF_EMPLOYEES</find>
       <find>TOTAL_OPPORTUNITY_QUANTITY</find>
+      <find>POCCON</find>
+      <find>TOTAL</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -72,17 +113,17 @@
         <option value="$PROJECT_DIR$/core/yaml_loader.py" />
         <option value="$PROJECT_DIR$/core/dag.py" />
         <option value="$PROJECT_DIR$/core/factory.py" />
-        <option value="$PROJECT_DIR$/core/nodes/info/profiler.py" />
         <option value="$PROJECT_DIR$/test/test_DAGBuilder.py" />
-        <option value="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" />
-        <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" />
-        <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" />
         <option value="$PROJECT_DIR$/api/cli/pipeline.py" />
+        <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" />
+        <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" />
+        <option value="$PROJECT_DIR$/core/nodes/info/profiler.py" />
+        <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering_predict.yaml" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="1" />
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="947" />
@@ -93,6 +134,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -100,11 +142,50 @@
               <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
               <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="cli" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="nodes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="dummy" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -146,6 +227,27 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/cli/pipeline.py" />
       <option name="PARAMETERS" value="--config_path=$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml --config_parameters=$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pipeline_predict" type="PythonConfigurationType" factoryName="Python">
+      <module name="ml_pipeline" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api/cli" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/cli/pipeline.py" />
+      <option name="PARAMETERS" value="--config_path=$PROJECT_DIR$/test/resources/dummy/dummy_clustering_predict.yaml --config_parameters=$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -214,6 +316,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.pipeline_predict" />
       <item itemvalue="Python.pipeline" />
       <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_edge" />
       <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_vertex" />
@@ -277,6 +380,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -286,7 +390,7 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2736842" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32046783" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.36959064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -300,6 +404,17 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/core/nodes/info/profiler.py</url>
+          <line>170</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/core/nodes/common/sql/reader.py">
@@ -335,13 +450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/processor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
@@ -510,16 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/dag.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4065">
-          <caret line="278" column="28" selection-start-line="278" selection-start-column="28" selection-end-line="278" selection-end-column="28" />
-          <folding>
-            <element signature="e#374#408#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/dummy/Dummy_Clustering.png" />
     <entry file="file://$PROJECT_DIR$/core/factory.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -537,16 +635,6 @@
           <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
           <folding>
             <element signature="e#265#310#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/info/profiler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="52" column="47" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
-          <folding>
-            <element signature="e#271#316#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -574,27 +662,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="105" column="32" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="32" />
-          <folding>
-            <element signature="e#260#294#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_DAGBuilder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -605,13 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/builder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -619,10 +683,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/profile/raw_data_profile.json" />
+    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/sklearn/preprocessing/_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1049">
+          <caret line="634" column="8" selection-start-line="634" selection-start-column="8" selection-end-line="634" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/sklearn/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-148">
+          <caret line="543" column="8" selection-start-line="543" selection-start-column="8" selection-end-line="543" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/processor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/dag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3315">
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
+          <folding>
+            <element signature="e#374#408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/info/profiler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+          <folding>
+            <element signature="e#271#282#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4575">
-          <caret line="305" column="41" lean-forward="true" selection-start-line="305" selection-start-column="41" selection-end-line="305" selection-end-column="41" />
+        <state relative-caret-position="592">
+          <caret line="305" column="41" selection-start-line="305" selection-start-column="41" selection-end-line="305" selection-end-column="41" />
           <folding>
             <element signature="e#277#327#0" expanded="true" />
           </folding>
@@ -631,10 +744,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/cli/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="532">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2899">
+          <caret line="54" column="16381" selection-end-line="307" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering_predict.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="275" column="23" selection-start-line="275" selection-start-column="23" selection-end-line="275" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+          <folding>
+            <element signature="e#260#294#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -273,7 +273,7 @@
                   'calinski_harabasz_score': {'df': n_data_wins, 'label':'classification_label', 'cols': features},
                   'davies_bouldin_score': {'df': n_data_wins, 'label':'classification_label', 'cols': features},
                   'update_cache': 'results'}
-          mode: save
+          mode: predict
           model_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/kmeans.pkl"
         input: null
         output: null
