@@ -26,7 +26,7 @@ class TestDag(TestCase):
             "linewidths": 2,
             "width": 2,
             "node_shape": 's',
-        })
+        }, save=False)
 
     def test_add_edge(self):
         import random
@@ -51,7 +51,7 @@ class TestDag(TestCase):
             v = random.randint(i+1,99)
             self.d.add_edge(u, v)
 
-        self.d.show(options=options)
+        self.d.show(options=options, save=False)
 
 
     def test_validate_vertex(self):
@@ -68,7 +68,7 @@ class TestDag(TestCase):
 
         self.d.add_edge(a, b)
         self.d.add_edge(b, c)
-        self.d.show()
+        self.d.show(save=False)
 
     def test_has_path_to(self):
         self.fail()

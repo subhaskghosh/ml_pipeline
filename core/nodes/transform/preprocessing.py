@@ -384,7 +384,6 @@ class DataFrameNumericalFilter(AbstructNode):
                 elif c == '==':
                     tmp = tmp[tmp[column] == v]
 
-
         if not self.inplace:
             self.addToCache(self.output,tmp)
         else:
@@ -437,6 +436,33 @@ class DataFrameComparatorFilter(AbstructNode):
                 df = df[df[column].gt(compare_with)]
 
         self.addToCache(self.output, df)
+
+class DataFrameDropNA(AbstructNode):
+    """Filter rows by dropping them on column containing NA"""
+
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+
+        if 'subset' in self.parameter:
+            self.subset = self.parameter['subset']
+        else:
+            raise NodeConfigurationError(
+                'Filter conditions not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+        tmp = df.dropna(subset=self.subset)
+        self.addToCache(self.output, tmp)
+
 
 class DataFrameResetIndex(AbstructNode):
     """Reset Index"""
@@ -618,7 +644,6 @@ class DataFramePowerTransform(AbstructNode):
     def __init__(self, name, parameter, input, output):
         super().__init__(name, parameter, input, output)
         # validate parameters
-        # validate parameters
         if 'columns' in self.parameter:
             self.columns = self.parameter['columns']
         else:
@@ -752,3 +777,229 @@ class DataFrameConcat(AbstructNode):
         df = pd.concat(dfs)
         self.addToCache(self.output, df)
 
+class DataFrameImputeZero(AbstructNode):
+    """Fill fillna on columns with 0"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'from_variable' in self.parameter:
+            self.from_variable = self.parameter['from_variable']
+        else:
+            self.from_variable = None
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        if self.from_variable:
+            self.columns = self.getFromCache(self.columns)
+
+        df = self.getFromCache(self.input)
+
+        interim_df = df.copy()
+        interim_df[self.columns] = df[self.columns].fillna(0)
+
+        self.addToCache(self.output, interim_df)
+
+class DataFrameConvertDateTime(AbstructNode):
+    """Fill fillna on columns with 0"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+
+        for column in self.columns:
+            df[column] = pd.to_datetime(df[column])
+
+        self.addToCache(self.output, df)
+
+class DataFrameAddTimediff(AbstructNode):
+    """Fill fillna on columns with 0"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'from' in self.parameter:
+            self.from_column = self.parameter['from']
+        else:
+            raise NodeConfigurationError(
+                'From Column name not specified "{0}"'.format(parameter))
+
+        if 'to' in self.parameter:
+            self.to_column = self.parameter['to']
+        else:
+            raise NodeConfigurationError(
+                'To Column name not specified "{0}"'.format(parameter))
+
+        if 'as' in self.parameter:
+            self.as_column = self.parameter['as']
+        else:
+            raise NodeConfigurationError(
+                'As Column name not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+        df[self.as_column] = (df[self.from_column] - df[self.to_column]).dt.days
+        self.addToCache(self.output, df)
+
+class DataFrameProject(AbstructNode):
+    """Fill fillna on columns with 0"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'from_variable' in self.parameter:
+            self.from_variable = self.parameter['from_variable']
+        else:
+            self.from_variable = None
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        if self.from_variable:
+            self.columns = self.getFromCache(self.columns)
+        df = self.getFromCache(self.input)
+        interim_df = df[self.columns]
+        self.addToCache(self.output, interim_df)
+
+class DataFrameStringImpute(AbstructNode):
+    """Fill fillna on columns with 0"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'inplace' in self.parameter:
+            self.inplace = self.parameter['inplace']
+        else:
+            self.inplace = False
+
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'conditions' in self.parameter:
+            self.conditions = self.parameter['conditions']
+        else:
+            raise NodeConfigurationError(
+                'Filter conditions not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+
+        if not self.inplace:
+            tmp = df[self.columns]
+        else:
+            tmp = df
+
+        for k,v in self.conditions.items():
+            column = k
+            c = v['condition']
+            r = v['replace']
+
+            if c == 'isna':
+                tmp.loc[tmp[column].isna(),column] = r
+
+        self.addToCache(self.output,tmp)
+
+class DataFrameConditionalStringImpute(AbstructNode):
+    """Fill fillna on columns with 0"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        # validate parameters
+        if 'inplace' in self.parameter:
+            self.inplace = self.parameter['inplace']
+        else:
+            self.inplace = False
+
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Column name(s) not specified "{0}"'.format(parameter))
+
+        if 'conditions' in self.parameter:
+            self.conditions = self.parameter['conditions']
+        else:
+            raise NodeConfigurationError(
+                'Filter conditions not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+        if self.output == None:
+            raise NodeConfigurationError(
+                'Output can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
+
+        if not self.inplace:
+            tmp = df[self.columns]
+        else:
+            tmp = df
+
+        for k,v in self.conditions.items():
+            column = k
+            c = v['condition']
+            rcolumn = v['replace_col']
+            remaining = v['replace_remaining']
+
+            if c == 'isna':
+                tmp.loc[(tmp[column].isna() & tmp[rcolumn].notna()), column] = tmp[(tmp[column].isna() & tmp[rcolumn].notna())][rcolumn]
+                tmp.loc[tmp[column].isna(), column] = remaining
+
+        self.addToCache(self.output,tmp)

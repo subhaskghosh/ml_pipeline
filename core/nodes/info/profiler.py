@@ -8,25 +8,39 @@ Table generation:
 import json
 import pandas as pd
 from core.error import NodeConfigurationError
+from core.logmanager import get_logger
 from core.nodes.node import AbstructNode
 from pandas_profiling import ProfileReport
 
-class DataFrameProfiler(AbstructNode):
-    """KMeans Clustering"""
+class ClusterProfiler(AbstructNode):
+    """Clustering features profiler"""
     def __init__(self, name, parameter, input, output):
         super().__init__(name, parameter, input, output)
+        self.logger = get_logger("DataFrameProfiler")
         # Validate parameter
-        if 'report' in self.parameter:
-            self.report = self.parameter['report']
+        if 'report_path' in self.parameter:
+            self.report_path = self.parameter['report_path']
         else:
             raise NodeConfigurationError(
-                'Reporting requirements not specified "{0}"'.format(parameter))
+                'Reporting csv path not specified "{0}"'.format(parameter))
 
         if 'columns' in self.parameter:
             self.columns = self.parameter['columns']
         else:
             raise NodeConfigurationError(
                 'Columns not specified "{0}"'.format(parameter))
+
+        if 'class_label' in self.parameter:
+            self.class_label = self.parameter['class_label']
+        else:
+            raise NodeConfigurationError(
+                'class_label Column not specified "{0}"'.format(parameter))
+
+        if 'win_loss_column' in self.parameter:
+            self.win_loss_column = self.parameter['win_loss_column']
+        else:
+            raise NodeConfigurationError(
+                'win_loss_column not specified "{0}"'.format(parameter))
 
         if 'from_variable' in self.parameter:
             self.from_variable = self.parameter['from_variable']
@@ -36,12 +50,11 @@ class DataFrameProfiler(AbstructNode):
                 'Input can not be None')
 
     def execute(self):
-        title = f"Profiling Report - {self.columns}"
         if self.from_variable:
             self.columns = self.getFromCache(self.columns)
         df = self.getFromCache(self.input)
-        r = df.groupby(['classification_label', 'DNA_STD_DC_END_RESULT']).count()
-        print(r)
+        r = df.groupby([self.class_label, self.win_loss_column]).count()
+        self.logger.info(f'\n\n {r.head()} \n\n')
         columns = []
         n_distinct = []
         p_distinct = []
@@ -75,13 +88,13 @@ class DataFrameProfiler(AbstructNode):
         p_zeros = []
         p_infinite = []
         classification_label = []
-        DNA_STD_DC_END_RESULT = []
+        wl = []
         for win_loss in [True, False]:
-            df_wl = df[df['DNA_STD_DC_END_RESULT'] == win_loss]
+            df_wl = df[df[self.win_loss_column] == win_loss]
             for label in [0,1,2]:
-                df_wl_l = df_wl[df_wl['classification_label']==label]
+                df_wl_l = df_wl[df_wl[self.class_label]==label]
                 df_wl_l = df_wl_l[self.columns]
-                profile = ProfileReport(df_wl_l, title=title,
+                profile = ProfileReport(df_wl_l,
                                         samples=None,
                                         correlations=None,
                                         missing_diagrams=None,
@@ -96,7 +109,7 @@ class DataFrameProfiler(AbstructNode):
                         if k in self.columns:
                             col_type = v['type']
                             if col_type == 'Numeric':
-                                DNA_STD_DC_END_RESULT.append(win_loss)
+                                wl.append(win_loss)
                                 classification_label.append(label)
                                 columns.append(k)
                                 n_distinct.append(v['n_distinct'])
@@ -132,7 +145,7 @@ class DataFrameProfiler(AbstructNode):
                                 p_infinite.append(v['p_infinite']*100.0)
 
         rdf = pd.DataFrame.from_dict({
-            'DNA_STD_DC_END_RESULT': DNA_STD_DC_END_RESULT,
+            'Win-Loss': wl,
             'classification_label': classification_label,
             'Column Name': columns,
             'Distinct': n_distinct,
@@ -168,5 +181,44 @@ class DataFrameProfiler(AbstructNode):
             'Infinite (%)': p_infinite
         })
 
-        rdf.to_csv('/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/csv_output/profile.csv')
+        rdf.to_csv(self.report_path)
 
+class DatFrameProfiler(AbstructNode):
+    """Dataframe profiler"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        self.logger = get_logger("DataFrameProfiler")
+        # Validate parameter
+        if 'report_path' in self.parameter:
+            self.report_path = self.parameter['report_path']
+        else:
+            raise NodeConfigurationError(
+                'Reporting html path not specified "{0}"'.format(parameter))
+
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Columns not specified "{0}"'.format(parameter))
+
+        if 'remove_columns' in self.parameter:
+            self.remove_columns = self.parameter['remove_columns']
+        else:
+            self.remove_columns = []
+
+        if 'from_variable' in self.parameter:
+            self.from_variable = self.parameter['from_variable']
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+    def execute(self):
+        if self.from_variable:
+            self.columns = self.getFromCache(self.columns)
+        df = self.getFromCache(self.input)
+
+        df = df[[item for item in self.columns if item not in self.remove_columns]]
+        profile = ProfileReport(df,progress_bar=False)
+
+        profile.to_file(self.report_path)

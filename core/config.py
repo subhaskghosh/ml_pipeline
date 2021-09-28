@@ -9,12 +9,14 @@ Table generation:
 
 import yaml
 
+from core.logmanager import get_logger
 from core.yaml_loader import SubstitutionLoader, user_params
-
 
 class ConfigBuilder(object):
     """Reads a yaml config and returns a dict"""
     def __init__(self, path=None, params=None):
+        self.logger = get_logger("ConfigBuilder")
+        self.logger.info(f"Building from config path {path} with parameter {params}")
         self.config = None
         if params:
             for k,v in params.items():
@@ -24,7 +26,7 @@ class ConfigBuilder(object):
                 self.stream = open(path, 'r')
                 self.config = yaml.load(self.stream, Loader=SubstitutionLoader) # yaml.Loader
             except FileNotFoundError as e:
-                print(
+                self.logger.warn(
                     'Error opening Config "{0}"'.format(e))
         else:
             self.config = None

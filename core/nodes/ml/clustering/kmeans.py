@@ -6,14 +6,11 @@ Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
 from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score, adjusted_rand_score, homogeneity_score, completeness_score, \
-    v_measure_score, adjusted_mutual_info_score, calinski_harabasz_score, davies_bouldin_score
-from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
 
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
 import pickle
-import pandas as pd
 
 class KMeansClustering(AbstructNode):
     """KMeans Clustering"""
@@ -110,11 +107,9 @@ class KMeansClustering(AbstructNode):
             X = df[self.fit_df_columns]
             km_obj.fit(X)
             with open(self.model_path, 'wb') as f:
-                print('Saving Model...\n\n')
                 pickle.dump(km_obj, f)
         else:
             with open(self.model_path, 'rb') as f:
-                print('Loding Model...\n\n')
                 km_obj = pickle.load(f)
 
         for k,v in self.predict.items():

@@ -4,11 +4,16 @@ Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
 Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
+from core.logmanager import get_logger
+
 
 class NullExecutor(object):
     '''An executor which runs no real things'''
 
 class Executor(object):
+    def __init__(self):
+        self.logger = get_logger("Executor")
+
     def param(self, vertex):
         return vertex
 
@@ -16,14 +21,14 @@ class Executor(object):
         return param.execute()
 
     def report_start(self, vertices):
-        print('Starting:', vertices)
+        self.logger.info(f'Starting: {vertices}')
 
     def report_running(self, vertices):
-        print('Currently running:', vertices)
+        self.logger.info(f'Currently running: {vertices}')
 
     def report_finish(self, vertices_result):
         for vertex, result in vertices_result:
-            print('Finished running {0}'.format(vertex.name))
+            self.logger.info('Finished running {0}'.format(vertex.name))
 
     def deliver(self, vertex, result):
         vertex.accept_delivery(result)

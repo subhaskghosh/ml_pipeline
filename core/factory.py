@@ -8,7 +8,10 @@ from core.nodes.common.generic import *
 from core.nodes.extract.file.csv_reader import *
 from core.nodes.info.profiler import *
 from core.nodes.load.file.csv_writer import *
+from core.nodes.ml.classifier.rf import *
 from core.nodes.ml.clustering.kmeans import *
+from core.nodes.ml.processing.split import *
+from core.nodes.ml.transformer.transformation import *
 from core.nodes.node import *
 from core.nodes.transform.preprocessing import *
 
@@ -36,7 +39,20 @@ class NodeFactory(object):
             'ml.clustering.kmeans': 'KMeansClustering',
             'transform.dataframe.concat': 'DataFrameConcat',
             'load.csv': 'CSVFIleWriterNode',
-            'info.profiler': 'DataFrameProfiler'
+            'info.cluster.profiler': 'ClusterProfiler',
+            'info.df.profiler': 'DatFrameProfiler',
+            'transform.dataframe.dropna': 'DataFrameDropNA',
+            'transform.dataframe.impute.zero': 'DataFrameImputeZero',
+            'transform.dataframe.convert.datetime': 'DataFrameConvertDateTime',
+            'transform.dataframe.timediff': 'DataFrameAddTimediff',
+            'transform.dataframe.project': 'DataFrameProject',
+            'transform.dataframe.string.impute': 'DataFrameStringImpute',
+            'transform.dataframe.conditional.string.impute': 'DataFrameConditionalStringImpute',
+            'ml.train_test.split': 'TrainTestSplit',
+            'ml.transform.RobustScaleTransformer': 'RobustScaleTransformer',
+            'ml.transform.WoeTransformer': 'WoeTransformer',
+            'ml.transform.ColumnTransformer': 'ColumnTransformerNode',
+            'ml.classifier.RandomForest': 'RandomForest'
         }
 
     def get(self, name, parameter, input, output):

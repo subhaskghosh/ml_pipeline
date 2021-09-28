@@ -6,7 +6,6 @@ Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
 
-
 class AbstructNode:
     def __init__(self, name, parameter, input, output):
         self.name = name
@@ -34,7 +33,7 @@ class AbstructNode:
         return f"Param: {textwrap.fill(str(self.parameter),40)},\n I: {self.input},\n O: {self.output}"
 
     def execute(self):
-        print(f"Executing: {self.name} with input data {self.input}")
+        pass
 
     def add_cache(self, cache):
         self.cache = cache

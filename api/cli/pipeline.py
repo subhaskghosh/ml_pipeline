@@ -64,6 +64,7 @@ def main(args: Optional[List[Any]] = None) -> None:
                 param = json.load(json_file)
                 db = DAGBuilder(path=templete_path, param = param)
                 dag = db.get()
+                db.show()
                 r = dag.run()
                 pp = pprint.PrettyPrinter(indent=4)
                 pp.pprint(r)

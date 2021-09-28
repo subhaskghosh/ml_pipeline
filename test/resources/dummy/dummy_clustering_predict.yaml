@@ -73,7 +73,7 @@
         parameter:
           inplace: true
           columns: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT", "DNA_STD_DC_AMOUNT"]
-          conditions: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT": ["== 0"], "DNA_STD_DC_AMOUNT": [">= 30000"]]
+          conditions: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT": ["== 0"], "DNA_STD_DC_AMOUNT": [">= 70000"]]
         input: filtered
         output: filtered
     - transform.dataframe.filter.compare: # Only Channel
@@ -299,10 +299,12 @@
           index: false
         input: n_kmeans_labeled
         output: null
-    - info.profiler:
+    - info.cluster.profiler:
         parameter:
-          report: {'html': true, 'json': true, 'path': "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/profile/raw_data_profile"}
+          report_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/csv_output/profile.csv"
           columns: features
           from_variable: yes
+          class_label: 'classification_label'
+          win_loss_column: 'DNA_STD_DC_END_RESULT'
         input: kmeans_labeled
         output: null

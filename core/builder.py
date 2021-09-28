@@ -9,6 +9,7 @@ from core.config import ConfigBuilder
 from core.dag import Dag
 from core.error import ConfigNotFoundError
 from core.factory import NodeFactory
+from core.logmanager import get_logger
 
 
 class DAGBuilder(object):
@@ -17,10 +18,10 @@ class DAGBuilder(object):
     executable dag
     """
     def __init__(self, path=None, param=None):
+        self.logger = get_logger("DAGBuilder")
         self.dag = None
         self.cb = ConfigBuilder(path, param)
         self.config = self.cb.get()
-        self.cb.show()
         self.nf = NodeFactory()
         nodes = []
 
@@ -50,8 +51,12 @@ class DAGBuilder(object):
                 self.dag.add_edge(u,v)
                 u = v
         else:
+            self.logger.exception('Config "{0}" not specified or Null'.format(path))
             raise ConfigNotFoundError(
                 'Config "{0}" not specified or Null'.format(path))
 
     def get(self):
         return self.dag
+
+    def show(self):
+        self.cb.show()

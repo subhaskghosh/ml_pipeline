@@ -1,0 +1,276 @@
+--- # This the configuration file for executing clustering pipeline
+- schemaVersion: "1.0"
+- pipelineMeta:
+    customer: !Var customer_name
+    type: Classification
+    run_date: !Var run_date
+    run_id: !UUID
+    notes: 'Win-Loss prediction on closed opportunities'
+    current_date: !Date today
+    hyperparameters: null
+    results: null
+- stages:
+    - extract.csv:
+        parameter:
+          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/csv/dummy.csv"
+        input: null
+        output: raw
+    - transform.column_name.upper:
+        parameter: null
+        input: raw
+        output: raw
+    - transform.dataframe.filter.string:
+        parameter:
+          inplace: true
+          columns: ["DNA_STD_DC_OPPTY_STAGE_NAME"]
+          conditions: ["DNA_STD_DC_OPPTY_STAGE_NAME": ["like r'7'"]]
+        input: raw
+        output: raw
+    - common.add.variable: # Define set of columns required as variables
+        parameter:
+          variables: [
+            impute_to_0_cols : [
+            # All these columns must be imputed to 0
+            'DNA_CUSTOM_DC_CONTACTS_ACTIVE',
+            'DNA_CUSTOM_DC_DURATION_POC',
+            'DNA_CUSTOM_DC_PREV_OPPS_COUNT',
+            'DNA_CUSTOM_DC_PREV_OPPS_LOST_COUNT',
+            'DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT',
+            'DNA_STD_DC_EVENTS_IA_AFTER_OPPTY_COUNT',
+            #'DNA_STD_DC_EVENTS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_EVENTS_IA_BEFORE_OPPTY_COUNT',
+            #'DNA_STD_DC_EVENTS_IA_BEFORE_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_MKTG_IA_AFTER_OPPTY_COUNT',
+            #'DNA_STD_DC_MKTG_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_MKTG_IA_BEFORE_OPPTY_COUNT',
+            #'DNA_STD_DC_MKTG_IA_BEFORE_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_EVENTS_TOTAL_IA_COUNT',
+            #'DNA_STD_DC_EVENTS_TOTAL_IA_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_COUNT',
+            #'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_MKTG_TOTAL_IA_COUNT'
+            #'DNA_STD_DC_MKTG_TOTAL_IA_FREQ' # Should remove too many zeros?
+            ]]
+        input: null
+        output: null
+    - transform.dataframe.filter.numerical: # This selection also removes non-nulls 'revenue' and 'num_employees'
+        parameter:
+          inplace: true
+          columns: ["DNA_STD_AC_ANNUAL_REVENUE", "DNA_STD_AC_NUMBER_OF_EMPLOYEES"]
+          conditions: ["DNA_STD_AC_ANNUAL_REVENUE": ["< 1e11"], "DNA_STD_AC_NUMBER_OF_EMPLOYEES": ["< 1.5e6"]]
+        input: raw
+        output: base_df
+    - transform.dataframe.dropna: # # First of all, drop all rows where opportunity amounts
+        # are missing. These are opportunities which were lost
+        # even before any meaningful actions could be taken.
+        # TODO: Verify that missing AMOUNT is equivalent to "Loss".
+        parameter:
+          subset: ["DNA_STD_DC_AMOUNT"]
+        input: base_df
+        output: interim_df_v1
+    - transform.dataframe.impute.zero: # All impute_to_0_cols columns must be imputed to 0
+        parameter:
+          columns: impute_to_0_cols
+          from_variable: yes
+        input: interim_df_v1
+        output: interim_df_v2
+    - transform.dataframe.convert.datetime:
+        parameter:
+          columns: ["ACCOUNT_CREATED_DATE", "OPPORTUNITY_CREATED_DATE", "OPPORTUNITY_CLOSED_DATE"]
+        input: interim_df_v2
+        output: interim_df_v2
+    - transform.dataframe.timediff: # compute DNA_ML_OPPORTUNITY_LIFE_DAYS as OPPORTUNITY_CLOSED_DATE - OPPORTUNITY_CREATED_DATE
+        # TODO: Move this to SQL and also use this feature in Clustering?
+        parameter:
+          from: "OPPORTUNITY_CLOSED_DATE"
+          to: "OPPORTUNITY_CREATED_DATE"
+          as: "DNA_ML_OPPORTUNITY_LIFE_DAYS"
+        input: interim_df_v2
+        output: interim_df_v2
+    - transform.dataframe.filter.numerical: # DNA_ML_OPPORTUNITY_LIFE_DAYS has -1
+        # TODO: These could be deals brought in by channel partners.
+        # This needs to be verified with the AMOUNT.
+        # For now taking Only DNA_ML_OPPORTUNITY_LIFE_DAYS >=-1
+        parameter:
+          inplace: true
+          columns: ["DNA_ML_OPPORTUNITY_LIFE_DAYS"]
+          conditions: ["DNA_ML_OPPORTUNITY_LIFE_DAYS": [">= -1"]]
+        input: interim_df_v2
+        output: interim_df_v2
+    - common.add.variable: # Define set of columns required as variables
+        parameter:
+          variables: [
+            primary_cols : [
+            # Primary key
+            'OPPORTUNITY_ID',
+            # Secondary key
+            'ACCOUNT_ID',
+            # Boolean: win/loss; since we only consider complete opportunities.
+            # This is also the target class for training the classifier.
+            'DNA_STD_DC_END_RESULT'
+          ], numeric_cols : [
+            # We don't really know what these fields indicate. It depends on the clients' understanding and
+            # how (diligently) they update these values. But we'll still keep these two.
+            'ADVANCED_PAST_STAGE_1_C',
+            'ADVANCED_PAST_STAGE_2_C',
+            # Features associated with the account or the opportunity which are usually beyond the control of the sales reps.
+            'DNA_STD_DC_AMOUNT',
+            'DNA_CUSTOM_DC_ISR_LED',
+            'DNA_CUSTOM_DC_SDR_LED',
+            'DNA_STD_AC_NUMBER_OF_EMPLOYEES',
+            'DNA_CUSTOM_DC_PREV_OPPS_COUNT',
+            'DNA_CUSTOM_DC_PREV_OPPS_LOST_COUNT',
+            'DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT',
+            'DNA_STD_AC_ANNUAL_REVENUE',
+            # Counting the time spent in various activities across different stages.
+            # At present, we are not sure which exact stages these activities show up in.
+            # These might be difficult for the sales reps to change, but it's not impossible.
+            'DAYS_IN_BUSINESS_JUSTIFICATION_C',
+            'DAYS_IN_CONSENSUS_C',
+            'DAYS_IN_DISCOVERY_C',
+            'DAYS_IN_NEGOTIATE_CLOSE_C',
+            'DAYS_IN_TECHNICAL_VALIDATION_C',
+            'DAYS_IN_PO_WITH_CHANNEL_C',
+            'DNA_CUSTOM_DC_DURATION_POC',
+            # Features related to activities which the sales reps might carry out with relative ease.
+            'DNA_STD_DC_MKTG_NURTURE_TIME',
+            'DNA_CUSTOM_DC_CONTACTS_ACTIVE',
+            'DNA_STD_DC_EVENTS_IA_AFTER_OPPTY_COUNT',
+            #'DNA_STD_DC_EVENTS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_EVENTS_IA_BEFORE_OPPTY_COUNT',
+            #'DNA_STD_DC_EVENTS_IA_BEFORE_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_EVENTS_TOTAL_IA_COUNT',
+            #'DNA_STD_DC_EVENTS_TOTAL_IA_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_MKTG_IA_AFTER_OPPTY_COUNT',
+            #'DNA_STD_DC_MKTG_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_MKTG_IA_BEFORE_OPPTY_COUNT',
+            #'DNA_STD_DC_MKTG_IA_BEFORE_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_MKTG_TOTAL_IA_COUNT',
+            #'DNA_STD_DC_MKTG_TOTAL_IA_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_COUNT',
+            #'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
+            # Computed above
+            'DNA_ML_OPPORTUNITY_LIFE_DAYS' # Should we keep the -1's ?
+          ], category_cols : [
+            # Features associated with the  account or the opportunity which
+            # are usually beyond the control of the sales reps.
+            'SUB_REGION_C',
+            'OWNER_SUB_REGION_C',
+            'CONVERTED_FROM_LEAD_C',
+            'DNA_STD_DC_LEAD_SOURCE',
+            'DNA_STD_DC_LEAD_SOURCE_INBOUND',
+            'DNA_CUSTOM_DC_PRIMARY_COMPETITOR',
+            'DNA_CUSTOM_DC_INCUMBENT',
+            'DNA_CUSTOM_DC_SEGMENT',
+            'OPPORTUNITY_SUB_TYPE_C'
+          ], 'label_col': 'DNA_STD_DC_END_RESULT']
+        input: null
+        output: null
+    - common.union.columns: #  all useful columns
+        parameter:
+          cached_variables: [primary_cols, numeric_cols, category_cols]
+          lhs_variable_name: all_cols
+        input: null
+        output: null
+    - common.union.columns: # Which columns will be used for model
+        parameter:
+          cached_variables: [numeric_cols, category_cols]
+          lhs_variable_name: ml_cols
+        input: null
+        output: null
+    - transform.dataframe.project: # use only all_cols
+         parameter:
+           columns: all_cols
+           from_variable: yes
+         input: interim_df_v2
+         output: interim_df_v3
+    - transform.dataframe.string.impute: # fill up some na
+        parameter:
+          inplace: true
+          columns: ["DNA_STD_DC_LEAD_SOURCE", "DNA_STD_DC_LEAD_SOURCE_INBOUND", "DNA_CUSTOM_DC_INCUMBENT", "DNA_CUSTOM_DC_PRIMARY_COMPETITOR", "OPPORTUNITY_SUB_TYPE_C"]
+          conditions: {
+            "DNA_STD_DC_LEAD_SOURCE": {"condition": "isna", "replace": "Sales"},
+            "DNA_STD_DC_LEAD_SOURCE_INBOUND": {"condition": "isna", "replace": "Outbound"},
+            "DNA_CUSTOM_DC_INCUMBENT": {"condition": "isna", "replace": "None"},
+            "DNA_CUSTOM_DC_PRIMARY_COMPETITOR": {"condition": "isna", "replace": "None"},
+            "OPPORTUNITY_SUB_TYPE_C": {"condition": "isna", "replace": "Regular"}
+          }
+        input: interim_df_v3
+        output: interim_df_v3
+    - transform.dataframe.filter.numerical: # Only lands, and Only positive amounts Greater than 70K
+        parameter:
+          inplace: true
+          columns: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT", "DNA_STD_DC_AMOUNT"]
+          conditions: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT": ["== 0"], "DNA_STD_DC_AMOUNT": [">= 70000"]]
+        input: interim_df_v3
+        output: interim_df_v3
+    - transform.dataframe.conditional.string.impute: # fill up some na
+        parameter:
+          inplace: true
+          columns: ["SUB_REGION_C", "OWNER_SUB_REGION_C"]
+          conditions: {
+            "SUB_REGION_C": {"condition": "isna", "replace_col": "OWNER_SUB_REGION_C", "replace_remaining": "Unknown"},
+            "OWNER_SUB_REGION_C": {"condition": "isna", "replace_col": "SUB_REGION_C", "replace_remaining": "Unknown"}
+          }
+        input: interim_df_v3
+        output: final_df
+    - ml.train_test.split:
+        parameter:
+          output_vars: [X_train, X_test, y_train, y_test]
+          label: label_col
+          data_columns: ml_cols
+          test_size: 0.2
+          random_state: 42
+        input: final_df
+        output: null
+    - ml.transform.RobustScaleTransformer: # Creates an Instance of the transformer
+        parameter:
+          with_centering: true
+          with_scaling: true
+          quantile_range: [0.05, 0.95]
+        input: null
+        output: robust_scale_transformer
+    - ml.transform.WoeTransformer: # Transformer to convert categorical features (treated as strings)
+        # to weight-of-evidence values for the different category levels. Creates an Instance of the transformer
+        parameter:
+          columns: category_cols
+          missing_val: "0"
+        input: null
+        output: woe_transformer
+    - ml.transform.ColumnTransformer: # Pipeline
+        parameter:
+          pipeline: [
+            {"type": "numericals", "transformer": robust_scale_transformer, "columns": numeric_cols},
+            {"type": "categories", "transformer": woe_transformer, "columns": category_cols}
+          ]
+        input: [X_train, y_train, X_test]
+        output: [X_train_T, X_test_T]
+    - ml.classifier.RandomForest: # Build and save the model and generate results
+        parameter:
+          search: {
+            'criterion': ['entropy'],
+            'n_estimators': [100, 125, 150],
+            'max_depth': [10, 12, 16, 20],
+            'min_samples_split': [2, 4, 6],
+            'max_features': ['auto', 0.75, 0.5],
+            'cross_validation': 5,
+            'random_state': 42
+          }
+          mode: load
+          model_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/rf.pkl"
+          score: {
+            "fbeta_score": {"average": "binary", "beta": 0.5},
+            "balanced_accuracy_score": {},
+            "importance": {"columns": ml_cols},
+            "update_cache": "results"
+          }
+        input: [X_train_T, X_test_T, y_train, y_test]
+        output: null
+    - info.df.profiler:
+        parameter:
+          report_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/profile/win_loss_profile.html"
+          columns: all_cols
+          remove_columns: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT"]
+          from_variable: yes
+        input: final_df
+        output: null

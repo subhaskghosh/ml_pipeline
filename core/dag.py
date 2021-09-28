@@ -10,14 +10,11 @@ Table generation:
 from core.cache import SimpleCache
 from core.error import *
 import networkx as nx
-import logging
 from core.executor import Executor
+from core.logmanager import get_logger
 from core.nodes.node import AbstructNode
 from core.processor import Processor
 from core.selector import Selector
-
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
-logger = logging.getLogger(__name__)
 
 def call_method(instance, method, *args, **kwargs):
     try:
@@ -34,6 +31,7 @@ class Dag(object):
     """Provides functionality to create a DAG"""
 
     def __init__(self,meta=None):
+        self.logger = get_logger("Dag")
         self.selector = Selector()
         self.graph = nx.DiGraph()
         self.processor = Processor()
@@ -63,7 +61,7 @@ class Dag(object):
         self.validate_vertex(u, *vs)
         for v_to in vs:
             if self.has_path_to(v_to, u):  # pylint: disable=arguments-out-of-order
-                logging.exception('Cycle if add edge from "{0}" to "{1}"'.format(u, v_to))
+                self.logger.exception('Cycle if add edge from "{0}" to "{1}"'.format(u, v_to))
                 raise DAGCycleError(
                     'Cycle if add edge from "{0}" to "{1}"'.format(u, v_to))
             self.graph.add_edge(u, v_to)
@@ -75,7 +73,7 @@ class Dag(object):
     def validate_vertex(self, *vertices):
         for vtx in vertices:
             if vtx not in self.graph.nodes:
-                logging.exception('Vertex "{0}" does not belong to DAG'.format(vtx))
+                self.logger.exception('Vertex "{0}" does not belong to DAG'.format(vtx))
                 raise DAGVertexNotFoundError(
                     'Vertex "{0}" does not belong to DAG'.format(vtx))
 
@@ -167,7 +165,7 @@ class Dag(object):
             elabels[v] = str(v)
 
         for k, v in pos.items():
-            lpos[k] = (v[0]+0.005,v[1])
+            lpos[k] = (v[0]+0.003,v[1])
             tpos[k] = (v[0],v[1]+0.06)
 
         nx.draw_networkx_labels(self.graph, lpos, labels, **self.options)
@@ -175,13 +173,11 @@ class Dag(object):
 
 
         ax = plt.gca()
-        ax.set_title(f'{self.pipelinetype} pipeline for {self.customer}')
-        #ax.margins(0.20)
         plt.axis("off")
 
         if save:
             import os
-            plt.savefig(os.path.join(path,f'{self.customer}_{self.pipelinetype}'), dpi=600)
+            plt.savefig(os.path.join(path,f'{self.customer}_{self.pipelinetype}'), dpi=80)
             plt.clf()
         else:
             plt.show()
