@@ -37,19 +37,12 @@
             'DNA_CUSTOM_DC_PREV_OPPS_LOST_COUNT',
             'DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT',
             'DNA_STD_DC_EVENTS_IA_AFTER_OPPTY_COUNT',
-            #'DNA_STD_DC_EVENTS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_EVENTS_IA_BEFORE_OPPTY_COUNT',
-            #'DNA_STD_DC_EVENTS_IA_BEFORE_OPPTY_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_MKTG_IA_AFTER_OPPTY_COUNT',
-            #'DNA_STD_DC_MKTG_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_MKTG_IA_BEFORE_OPPTY_COUNT',
-            #'DNA_STD_DC_MKTG_IA_BEFORE_OPPTY_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_EVENTS_TOTAL_IA_COUNT',
-            #'DNA_STD_DC_EVENTS_TOTAL_IA_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_COUNT',
-            #'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_MKTG_TOTAL_IA_COUNT'
-            #'DNA_STD_DC_MKTG_TOTAL_IA_FREQ' # Should remove too many zeros?
             ]]
         input: null
         output: null
@@ -128,9 +121,9 @@
             'DAYS_IN_BUSINESS_JUSTIFICATION_C',
             'DAYS_IN_CONSENSUS_C',
             'DAYS_IN_DISCOVERY_C',
-            'DAYS_IN_NEGOTIATE_CLOSE_C',
+            #'DAYS_IN_NEGOTIATE_CLOSE_C',
             'DAYS_IN_TECHNICAL_VALIDATION_C',
-            'DAYS_IN_PO_WITH_CHANNEL_C',
+            #'DAYS_IN_PO_WITH_CHANNEL_C',
             'DNA_CUSTOM_DC_DURATION_POC',
             # Features related to activities which the sales reps might carry out with relative ease.
             'DNA_STD_DC_MKTG_NURTURE_TIME',
@@ -149,6 +142,8 @@
             #'DNA_STD_DC_MKTG_TOTAL_IA_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_COUNT',
             #'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
+            'DNA_STD_DC_OPPORTUNITY_ELAPSED_TIME',
+            'DNA_STD_DC_TOTAL_ELAPSED_TIME',
             # Computed above
             'DNA_ML_OPPORTUNITY_LIFE_DAYS' # Should we keep the -1's ?
           ], category_cols : [
@@ -256,7 +251,7 @@
             'cross_validation': 5,
             'random_state': 42
           }
-          mode: load
+          mode: save
           model_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/rf.pkl"
           score: {
             "fbeta_score": {"average": "binary", "beta": 0.5},

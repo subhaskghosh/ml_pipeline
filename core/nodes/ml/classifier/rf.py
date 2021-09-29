@@ -6,8 +6,10 @@ Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import balanced_accuracy_score, fbeta_score
+from sklearn.metrics import balanced_accuracy_score, fbeta_score, precision_recall_curve
 from sklearn.model_selection import GridSearchCV
+
+import matplotlib.pyplot as plt
 
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
@@ -72,6 +74,11 @@ class RandomForest(AbstructNode):
             with open(self.model_path, 'rb') as f:
                 clf_rf = pickle.load(f)
 
+        # self.all_pr_curves(clf=clf_rf,
+        #       x_s=[X_train_T, X_test_T],
+        #       y_s=[y_train, y_test],
+        #       l_s=['RF_train', 'RF_test'])
+
         y_score_train = clf_rf.predict(X_train_T)
         y_score_test = clf_rf.predict(X_test_T)
 
@@ -98,3 +105,31 @@ class RandomForest(AbstructNode):
 
             if 'update_cache' in self.score:
                 self.addToCache(self.score['update_cache'], results)
+
+    def all_pr_curves(self, clf, x_s, y_s, l_s):
+        """
+        Draw up to 5 P/R curves in a single plot.
+
+        clf: Classifier for which the P/R curve has to be computed
+        x_s: A list of X np.ndarrays
+        y_s: A list of y np.ndarrays
+        l_s: A list of labels for each curve
+        """
+        fig, axs = plt.subplots(figsize=(7.5, 7.5))
+        colors = ['b', 'r', 'k', 'y', 'c']
+        assert (len(x_s) == len(y_s) and len(y_s) == len(l_s)), "x_s, y_s, and l_s have different shapes."
+        for i, (c, l) in enumerate(zip(colors, l_s)):
+            try:
+                ps, rs, _ = precision_recall_curve(y_s[i], clf.predict_proba(x_s[i])[:, 1])
+            except AttributeError:
+                # Certain classifiers do not implement predict_proba()
+                ps, rs, _ = precision_recall_curve(y_s[i], clf.decision_function(x_s[i]))
+            # We realise that simply calling clf.predict() would set the
+            # classification threshold to 0.5, but balanced accuracy still
+            # gives us some idea of how we are doing with imbalanced data.
+            bac = balanced_accuracy_score(y_s[i], clf.predict(x_s[i]))
+            plt.step(rs, ps, color=c, label="".join([l, ' (Balanced Acc.: ', str(round(bac, 3)), ')']))
+        plt.xlabel('recall')
+        plt.ylabel('precision')
+        plt.legend()
+        plt.show()
