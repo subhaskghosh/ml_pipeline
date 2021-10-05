@@ -67,29 +67,29 @@
           from_variable: yes
         input: interim_df_v1
         output: interim_df_v2
-    - transform.dataframe.convert.datetime:
-        parameter:
-          columns: ["ACCOUNT_CREATED_DATE", "OPPORTUNITY_CREATED_DATE", "OPPORTUNITY_CLOSED_DATE"]
-        input: interim_df_v2
-        output: interim_df_v2
-    - transform.dataframe.timediff: # compute DNA_ML_OPPORTUNITY_LIFE_DAYS as OPPORTUNITY_CLOSED_DATE - OPPORTUNITY_CREATED_DATE
-        # TODO: Move this to SQL and also use this feature in Clustering?
-        parameter:
-          from: "OPPORTUNITY_CLOSED_DATE"
-          to: "OPPORTUNITY_CREATED_DATE"
-          as: "DNA_ML_OPPORTUNITY_LIFE_DAYS"
-        input: interim_df_v2
-        output: interim_df_v2
-    - transform.dataframe.filter.numerical: # DNA_ML_OPPORTUNITY_LIFE_DAYS has -1
-        # TODO: These could be deals brought in by channel partners.
-        # This needs to be verified with the AMOUNT.
-        # For now taking Only DNA_ML_OPPORTUNITY_LIFE_DAYS >=-1
-        parameter:
-          inplace: true
-          columns: ["DNA_ML_OPPORTUNITY_LIFE_DAYS"]
-          conditions: ["DNA_ML_OPPORTUNITY_LIFE_DAYS": [">= -1"]]
-        input: interim_df_v2
-        output: interim_df_v2
+#    - transform.dataframe.convert.datetime:
+#        parameter:
+#          columns: ["ACCOUNT_CREATED_DATE", "OPPORTUNITY_CREATED_DATE", "OPPORTUNITY_CLOSED_DATE"]
+#        input: interim_df_v2
+#        output: interim_df_v2
+#    - transform.dataframe.timediff: # compute DNA_ML_OPPORTUNITY_LIFE_DAYS as OPPORTUNITY_CLOSED_DATE - OPPORTUNITY_CREATED_DATE
+#        # TODO: Move this to SQL and also use this feature in Clustering?
+#        parameter:
+#          from: "OPPORTUNITY_CLOSED_DATE"
+#          to: "OPPORTUNITY_CREATED_DATE"
+#          as: "DNA_ML_OPPORTUNITY_LIFE_DAYS"
+#        input: interim_df_v2
+#        output: interim_df_v2
+#    - transform.dataframe.filter.numerical: # DNA_ML_OPPORTUNITY_LIFE_DAYS has -1
+#        # TODO: These could be deals brought in by channel partners.
+#        # This needs to be verified with the AMOUNT.
+#        # For now taking Only DNA_ML_OPPORTUNITY_LIFE_DAYS >=-1
+#        parameter:
+#          inplace: true
+#          columns: ["DNA_ML_OPPORTUNITY_LIFE_DAYS"]
+#          conditions: ["DNA_ML_OPPORTUNITY_LIFE_DAYS": [">= -1"]]
+#        input: interim_df_v2
+#        output: interim_df_v2
     - common.add.variable: # Define set of columns required as variables
         parameter:
           variables: [
@@ -104,8 +104,8 @@
           ], numeric_cols : [
             # We don't really know what these fields indicate. It depends on the clients' understanding and
             # how (diligently) they update these values. But we'll still keep these two.
-            'ADVANCED_PAST_STAGE_1_C',
-            'ADVANCED_PAST_STAGE_2_C',
+            #'ADVANCED_PAST_STAGE_1_C',
+            #'ADVANCED_PAST_STAGE_2_C',
             # Features associated with the account or the opportunity which are usually beyond the control of the sales reps.
             'DNA_STD_DC_AMOUNT',
             'DNA_CUSTOM_DC_ISR_LED',
@@ -143,9 +143,9 @@
             'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_COUNT',
             #'DNA_STD_DC_TASKS_IA_AFTER_OPPTY_FREQ', # Should remove too many zeros?
             'DNA_STD_DC_OPPORTUNITY_ELAPSED_TIME',
-            'DNA_STD_DC_TOTAL_ELAPSED_TIME',
+            'DNA_STD_DC_TOTAL_ELAPSED_TIME'
             # Computed above
-            'DNA_ML_OPPORTUNITY_LIFE_DAYS' # Should we keep the -1's ?
+            #'DNA_ML_OPPORTUNITY_LIFE_DAYS' # Should we keep the -1's ?
           ], category_cols : [
             # Features associated with the  account or the opportunity which
             # are usually beyond the control of the sales reps.
@@ -248,7 +248,7 @@
             'max_depth': [10, 12, 16, 20],
             'min_samples_split': [2, 4, 6],
             'max_features': ['auto', 0.75, 0.5],
-            'cross_validation': 5,
+            'cross_validation': 3,
             'random_state': 42
           }
           mode: save
@@ -261,11 +261,11 @@
           }
         input: [X_train_T, X_test_T, y_train, y_test]
         output: null
-    - info.df.profiler:
-        parameter:
-          report_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/profile/win_loss_profile.html"
-          columns: all_cols
-          remove_columns: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT"]
-          from_variable: yes
-        input: final_df
-        output: null
+#    - info.df.profiler:
+#        parameter:
+#          report_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/profile/win_loss_profile.html"
+#          columns: all_cols
+#          remove_columns: ["DNA_CUSTOM_DC_PREV_OPPS_WON_COUNT"]
+#          from_variable: yes
+#        input: final_df
+#        output: null
