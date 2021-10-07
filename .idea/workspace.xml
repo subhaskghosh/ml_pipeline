@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e60191d-1d9f-4141-99df-29eefe8f3786" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/resources/dummy/model/rf.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/model/rf.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/logmanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/logmanager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/dummy/csv_output/clusters_lands_70K_amer_com_strategic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/csv_output/clusters_lands_70K_amer_com_strategic.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/dummy/csv_output/n_clusters_lands_70K_amer_com_strategic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/csv_output/n_clusters_lands_70K_amer_com_strategic.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/dummy/csv_output/profile.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/csv_output/profile.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/dummy/model/kmeans.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/dummy/model/kmeans.pkl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,75 +18,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml">
+        <entry file="file://$PROJECT_DIR$/core/logmanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="122" column="34" lean-forward="true" selection-start-line="122" selection-start-column="34" selection-end-line="122" selection-end-column="34" />
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
+        <entry file="file://$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="54" column="6531" selection-start-line="54" selection-start-column="6531" selection-end-line="54" selection-end-column="6619" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/ml/classifier/rf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+            <state relative-caret-position="1770">
+              <caret line="123" column="49" lean-forward="true" selection-start-line="123" selection-start-column="49" selection-end-line="123" selection-end-column="49" />
               <folding>
-                <element signature="e#260#311#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/dag.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="146" column="34" selection-start-line="146" selection-start-column="34" selection-end-line="146" selection-end-column="34" />
-              <folding>
-                <element signature="e#374#408#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/factory.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="96" selection-start-line="49" selection-start-column="96" selection-end-line="49" selection-end-column="96" />
-              <folding>
-                <element signature="e#200#239#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15045">
-              <caret line="1003" selection-start-line="1003" selection-end-line="1003" />
-              <folding>
-                <element signature="e#277#327#0" expanded="true" />
+                <element signature="e#233#286#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,7 +99,6 @@
         <option value="$PROJECT_DIR$/core/yaml_loader.py" />
         <option value="$PROJECT_DIR$/test/test_DAGBuilder.py" />
         <option value="$PROJECT_DIR$/core/logging.py" />
-        <option value="$PROJECT_DIR$/core/logmanager.py" />
         <option value="$PROJECT_DIR$/core/config.py" />
         <option value="$PROJECT_DIR$/core/cache.py" />
         <option value="$PROJECT_DIR$/core/executor.py" />
@@ -170,6 +122,8 @@
         <option value="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" />
         <option value="$PROJECT_DIR$/core/dag.py" />
         <option value="$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml" />
+        <option value="$PROJECT_DIR$/core/logmanager.py" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py" />
       </list>
     </option>
   </component>
@@ -184,7 +138,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,12 +149,6 @@
               <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
               <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="cli" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
@@ -235,6 +182,22 @@
               <item name="nodes" type="462c0819:PsiDirectoryNode" />
               <item name="ml" type="462c0819:PsiDirectoryNode" />
               <item name="classifier" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="nodes" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="clustering" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="nodes" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="teaft" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
@@ -281,6 +244,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,7 +271,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pipeline_classifier">
+  <component name="RunManager" selected="Python.pipeline_predict">
     <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ml_pipeline" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -442,10 +406,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pipeline" />
         <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_validate_vertex" />
         <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_edge" />
         <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_vertex" />
-        <item itemvalue="Python.pipeline" />
         <item itemvalue="Python tests.Nosetests for test_DAGBuilder.TestDAGBuilder.test_get" />
       </list>
     </recent_temporary>
@@ -506,8 +470,8 @@
       <window_info id="DB Browser" order="4" />
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29122806" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32982457" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2900585" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.45614034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -523,20 +487,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/networkx/classes/digraph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="815" column="8" selection-start-line="815" selection-start-column="8" selection-end-line="815" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/configparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="884" selection-start-line="884" selection-end-line="884" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.3/python_stubs/-1380346986/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2684">
@@ -599,30 +549,7 @@
     <entry file="file://$PROJECT_DIR$/core/nodes/common/db/connection.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/dummy/csv/dummy.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
-          <column index="0" width="100" />
-          <column index="1" width="100" />
-          <column index="2" width="100" />
-          <column index="3" width="100" />
-          <column index="4" width="100" />
-          <column index="5" width="100" />
-          <column index="6" width="100" />
-          <column index="7" width="100" />
-          <column index="8" width="100" />
-          <column index="9" width="100" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-3299" />
-      </provider>
-      <provider editor-type-id="csv-text-editor">
-        <state>
-          <caret column="26" selection-start-column="20" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/csv/dummy.csv" />
     <entry file="file://$PROJECT_DIR$/test/Dummy_Clustering.png" />
     <entry file="file://$PROJECT_DIR$/core/nodes/load/file/csv_writer.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -692,13 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/logmanager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -758,16 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_dag.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -833,16 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
-          <caret line="111" column="45" lean-forward="true" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
-          <folding>
-            <element signature="e#260#294#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/nodes/ml/processing/split.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
@@ -873,6 +773,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="149" column="39" selection-start-line="149" selection-start-column="39" selection-end-line="149" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/factory.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
@@ -893,22 +800,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/dag.py">
+    <entry file="file://$PROJECT_DIR$/test/test_dag.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="146" column="34" selection-start-line="146" selection-start-column="34" selection-end-line="146" selection-end-column="34" />
+        <state relative-caret-position="493">
+          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
           <folding>
-            <element signature="e#374#408#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/classifier/rf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
-          <folding>
-            <element signature="e#260#311#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -920,17 +817,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml">
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="122" column="34" lean-forward="true" selection-start-line="122" selection-start-column="34" selection-end-line="122" selection-end-column="34" />
+        <state relative-caret-position="15">
+          <caret line="54" column="5513" selection-start-line="54" selection-start-column="5513" selection-end-line="54" selection-end-column="5513" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
+    <entry file="file://$PROJECT_DIR$/api/cli/ml_pipeline.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/logmanager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="54" column="6531" selection-start-line="54" selection-start-column="6531" selection-end-line="54" selection-end-column="6619" />
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/classifier/rf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <element signature="e#260#311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="111" column="45" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
+          <folding>
+            <element signature="e#260#294#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/dag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="63" column="94" lean-forward="true" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="94" />
+          <folding>
+            <element signature="e#374#408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1770">
+          <caret line="123" column="49" lean-forward="true" selection-start-line="123" selection-start-column="49" selection-end-line="123" selection-end-column="49" />
+          <folding>
+            <element signature="e#233#286#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
