@@ -1,4 +1,5 @@
 import logging
+from logging.handlers import RotatingFileHandler
 import sys
 
 def get_logger(name):
@@ -17,7 +18,7 @@ def get_logger(name):
     logger.addHandler(console_handler)
 
     # create a rotating file handler associated with an external file
-    file_handler = logging.handlers.RotatingFileHandler(
+    file_handler = RotatingFileHandler(
         'ml_pipeline.log', mode='w', maxBytes=(1048576 * 5), backupCount=2, encoding=None, delay=0)
     # set the logging level for this file handler (default: DEBUG)
     file_handler.setLevel(logging.INFO)

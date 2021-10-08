@@ -3,7 +3,7 @@ import sklearn
 import sklearn.datasets
 import sklearn.ensemble
 
-from src.teaft.tweaker import ActionableFeatureTweaker
+from core.nodes.ml.teaft.tweaker import ActionableFeatureTweaker
 
 
 class TestActionableFeatureTweaker(TestCase):
@@ -17,7 +17,7 @@ class TestActionableFeatureTweaker(TestCase):
         train, test, labels_train, labels_test = \
             sklearn.model_selection.train_test_split(breast_cancer.data, breast_cancer.target, train_size=0.80)
 
-        rf = sklearn.ensemble.RandomForestClassifier(criterion='gini', n_estimators=5)
+        rf = sklearn.ensemble.RandomForestClassifier(criterion='gini', n_estimators=30)
 
         rf.fit(train, labels_train)
 
@@ -27,3 +27,5 @@ class TestActionableFeatureTweaker(TestCase):
                                        feature_names = breast_cancer.feature_names,
                                        class_names = breast_cancer.target_names,
                                        target_class = 'malignant')
+
+        aft.tweak(test, labels_test)
