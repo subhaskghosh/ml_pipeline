@@ -5,6 +5,9 @@ Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
 Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
+import collections
+import inspect
+
 from networkx.drawing.nx_pydot import graphviz_layout
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -12,6 +15,8 @@ import networkx as nx
 import numpy as np
 import multiprocessing as mp
 from tqdm import tqdm
+import pandas as pd
+from core.nodes.ml.teaft import cost_functions
 
 from core.logmanager import get_logger
 
@@ -287,12 +292,17 @@ class ActionableFeatureTweaker(object):
         plt.tight_layout()
         plt.savefig(f'./{id}.pdf', dpi=300)
 
-    def tweak(self, X, y, epsilon=0.1):
+    def tweak(self,
+              X,
+              y,
+              epsilon=0.1,
+              costfuncs = 'euclidean_distance, cosine_distance, jaccard_distance, pearson_correlation_distance, unmatched_component_rate'):
         """
         X (numpy ndarray): Features
         y (numpy ndarray of 1 dim): Class labels
         """
         self.epsilon = float(epsilon)
+        self.costfuncs = self.check_valid_cost_functions(costfuncs)
         if self.epsilon <= 0.0:
             self.logger.exception(
                 "epsilon may not be negative. provided %d" % epsilon)
@@ -304,24 +314,31 @@ class ActionableFeatureTweaker(object):
             "Retrieving the list of true negative instances")
         y_hat = self.model.predict(X)
         # select true negative instances from X
-        y_diff = np.where((y==0) & (y==y_hat))
+        self.y_diff = np.where((y==0) & (y==y_hat))
+
+        self.X = X
 
         self.logger.info("Creating the pool of workers")
         pool = mp.Pool()
 
         self.logger.info("Preparing the input to be sent to each worker of the pool")
-        input_pairs = zip(range(0, y_diff[0].size), y_diff[0])
+        self.input_pairs = zip(range(0, self.y_diff[0].size), self.y_diff[0])
         # create inputs and assign them to the workers in parallel
         inputs = [(X[i], n, i, self.epsilon, self.model, self.paths)
-                  for (n, i) in input_pairs]
+                  for (n, i) in self.input_pairs]
 
         self.logger.info(
             "Computing all the possible epsilon-transformations in parallel")
         self.X_negatives_transformations = dict(
             pool.map(self.map_compute_epsilon_transformation, inputs))
 
-        # For debugging TODO: remove this
-        self._print_x_transformation()
+        # Original and tweaked
+        self.X_negative = self._x_as_df()
+        self.X_prime_candidate = self._x_transformation_as_df()
+        
+        # Compute cost of candidates
+        tweaked_costs_df, tweaked_signs_df = self._create_tweaked_costs_dataframe()
+
         pass
 
 
@@ -434,12 +451,161 @@ class ActionableFeatureTweaker(object):
                 path_conditions[cond] = x_prime[feature_id]
         return x_prime
 
-    def _print_x_transformation(self):
+    def _x_transformation_as_df(self):
+        id_list = []
+        tree_id_list = []
+        path_id_list = []
+        path_length_list = []
+        dict_for_df = {}
+
+        for feature in self.feature_names:
+            dict_for_df[feature] = []
+
         for key in self.X_negatives_transformations:
             for tree_id in sorted(self.X_negatives_transformations[key]):
                 for element in self.X_negatives_transformations[key][tree_id]:
                     path_id = element[0]
                     path_length = element[1]
                     x_prime = element[2]
-                    print("%d \t %d \t %d \t %d \t %s\n" % (key, tree_id, path_id, path_length, '\t'.join([str(x) for x in x_prime])))
 
+                    id_list.append(key)
+                    tree_id_list.append(tree_id)
+                    path_id_list.append(path_id)
+                    path_length_list.append(path_length)
+
+                    for feature, x in zip(self.feature_names,x_prime):
+                        dict_for_df[feature].append(x)
+
+        dict_for_df['id'] = id_list
+        dict_for_df['tree_id'] = tree_id_list
+        dict_for_df['path_id'] = path_id_list
+        dict_for_df['path_length'] = path_length_list
+
+        df = pd.DataFrame.from_dict(dict_for_df)
+        return df
+
+    def _x_as_df(self):
+        dict_for_df = {}
+        id_list = []
+
+        for feature in self.feature_names:
+            dict_for_df[feature] = []
+
+        for i in self.y_diff[0]:
+            x = self.X[i]
+            id_list.append(i)
+            for feature, xi in zip(self.feature_names, x):
+                dict_for_df[feature].append(xi)
+        dict_for_df['id'] = id_list
+        df = pd.DataFrame.from_dict(dict_for_df)
+        return df
+
+    def _create_tweaked_costs_dataframe(self):
+        # build the heder for the cost DataFrame
+        costs_header = ['id', 'tree_id', 'path_id', 'path_length'] + self.costfuncs
+        # build the header for the DataFrame containing the signed transformations
+        signs_header = ['id'] + self.feature_names.flatten().tolist()
+
+        X = self.X_negative[self.feature_names]
+
+        ids = self.X_negative['id'].values.tolist()
+        prime_ids = self.X_prime_candidate['id'].values.tolist()
+
+        costs_rows = []
+        signs_rows = []
+
+        for i in ids:
+            if i in prime_ids:
+                x = self.X_negative[self.X_negative['id']==i][self.feature_names]
+                x = x.iloc[[0]]
+                x_t = []
+                for feature in self.feature_names:
+                    x_t.append(x[feature])
+                x = np.asarray(x_t, dtype=np.longdouble)
+                u = x.flatten().tolist()
+                x = np.asarray(u, dtype=np.longdouble)
+
+                # There can be more than one candidate
+                x_primes = self.X_prime_candidate[self.X_prime_candidate['id']==i]
+                for row in x_primes.iterrows():
+                    tree_id = int(row[1]['tree_id'])
+                    path_id = int(row[1]['path_id'])
+                    path_length = int(row[1]['path_length'])
+
+                    x_prime = []
+                    for feature in self.feature_names:
+                        x_prime.append(row[1][feature])
+                    x_prime = np.asarray(x_prime, dtype=np.longdouble)
+                    u = x_prime.flatten().tolist()
+                    x_prime = np.asarray(u, dtype=np.longdouble)
+
+                    costs_record = [i, tree_id, path_id, path_length]
+                    signs_record = [i]
+
+                    if np.array_equal(x, x_prime):
+                        for cf in self.costfuncs:
+                            costs_record.append(0)
+                    else:
+                        for cf in self.costfuncs:
+                            cf_val = self._compute_transformation_cost(x, x_prime, cf)
+                            costs_record.append(cf_val)
+
+                    # append the record for the DataFrame of costs
+                    costs_rows.append(tuple(costs_record))
+                    # create the record made of instance id and the difference between
+                    # feature values
+                    signs_record.extend(np.subtract(x_prime, x))
+                    # append the record for the DataFrame of transformation signs
+                    signs_rows.append(tuple(signs_record))
+            else:
+                costs_record = [i] + ['' for n in range(0, len(costs_header) - 1)]
+                signs_record = [i] + ['' for n in range(0, len(signs_header) - 1)]
+                costs_rows.append(tuple(costs_record))
+                signs_rows.append(tuple(signs_record))
+        costs_df = pd.DataFrame(
+            costs_rows, columns=costs_header)
+        signs_df = pd.DataFrame(
+            signs_rows, columns=signs_header)
+
+        return costs_df, signs_df
+
+    def check_valid_cost_functions(self, costfuncs):
+        """
+        This function is responsible for checking the validity of the input cost functions.
+        Args:
+            costfuncs (str): comma-separated string representing the list of cost functions passed as input argument to this script
+        Return:
+            a list of strings representing those cost function names specified as input that are also contained in the cost_functions module imported or
+            an argparse.ArgumentTypeError otherwise
+        """
+
+        name_func_tuples = inspect.getmembers(cost_functions, inspect.isfunction)
+        name_func_tuples = [t for t in name_func_tuples if inspect.getmodule(
+            t[1]) == cost_functions and not t[0].startswith("__")]
+
+        available_cost_functions = collections.OrderedDict.fromkeys(
+            [t[0] for t in name_func_tuples])
+        input_cost_functions = collections.OrderedDict.fromkeys(
+            [str(f).strip() for f in costfuncs.split(",")])
+        # input_cost_functions.intersection(available_cost_functions)
+        matched_cost_functions = collections.OrderedDict.fromkeys(
+            f for f in input_cost_functions if f in available_cost_functions)
+        unmatched_cost_functions = collections.OrderedDict.fromkeys(
+            f for f in input_cost_functions if f not in available_cost_functions)
+
+        if not matched_cost_functions:
+            raise ValueError(
+                "No function in the input list [{}] is a valid cost function! Please choose your input list from the following:\n{}".format(
+                    ", ".join([cf for cf in input_cost_functions]),
+                    "\n".join(["* " + f for f in available_cost_functions])))
+
+        if len(matched_cost_functions) < len(input_cost_functions):
+            self.logger.info("The following input functions are not valid cost functions: [{}]".format(
+                ", ".join([f for f in unmatched_cost_functions])))
+            self.logger.info("The cost functions we will be using are the following: [{}]".format(
+                ", ".join([f for f in matched_cost_functions])))
+
+        return list(matched_cost_functions)
+
+    def _compute_transformation_cost(self, x, x_prime, cf):
+        return getattr(cost_functions, cf)(x, x_prime)

@@ -6,12 +6,9 @@ Copyright (c) 2016 Yahoo! Labs. All rights reserved.
 """
 from scipy import spatial
 from scipy.stats import *
-
+import numpy as np
+import pandas as pd
 from core.logmanager import get_logger
-
-CONSOLE_LOGGING_FORMAT = '%(asctime)-15s *** %(levelname)s *** %(message)s'
-# file logging format
-FILE_LOGGING_FORMAT = '%(asctime)-15s *** %(levelname)s [%(filename)s:%(lineno)s - %(funcName)s()] *** %(message)s'
 
 # get the root logger
 logger = get_logger('cost_function')
@@ -33,16 +30,10 @@ def __normalize_vector(v):
         v' (numpy.array): the normalized vector v' as a numpy.array
     """
 
-    logger.info("Transform the input vector into a numpy array if needed")
     v = np.asarray(v)
-    logger.info("Compute the L-2 norm (i.e. Frobenius norm) of the input vector")
     norm = np.linalg.norm(v)
     if norm == 1:
-        logger.info(
-            "The L-2 norm (i.e. Frobenius norm) of the input vector is already {:.1f}. Let's just return the input vector as it is!".format(norm))
         return v
-    logger.info(
-        "The L-2 norm (i.e. Frobenius norm) of the input vector is {:.3f}. Let's normalize the input vector before returning it!".format(norm))
     return v / norm
 
 ##########################################################################
@@ -107,9 +98,6 @@ def unmatched_component_rate(u, v):
     Returns:
         float: the ratio of unmatched components between u and v, normalized by the length of the vectors
     """
-
-    logger.info(
-        "Compute the unmatched component rate (UCR) between the two input vectors u and v")
     return round(__count_unmatches(u, v) / float(len(u)), 5)
 
 ##########################################################################
@@ -130,11 +118,8 @@ def euclidean_distance(u, v):
                 resulting from the difference (u - v)
     """
 
-    logger.info("Normalize the two input vectors")
     u = __normalize_vector(u)
     v = __normalize_vector(v)
-    logger.info(
-        "Compute the Euclidean distance between the two input vectors u and v")
     return round(np.linalg.norm(u - v), 5)
 
 ##########################################################################
@@ -154,9 +139,6 @@ def cosine_distance(u, v):
     Returns:
         float: the cosine distance between u and v
     """
-
-    logger.info(
-        "Compute the Cosine distance between the two input vectors u and v")
     return round(spatial.distance.cosine(u, v), 5)
 
 ##########################################################################
@@ -166,25 +148,6 @@ def cosine_distance(u, v):
 
 def jaccard_distance(u, v):
     """
-    This function returns the Jaccard distance between two vectors u and v.
-    The Jaccard index Js defines a similarity measure; our distance measure is obtained as Jd = 1 - Js
-
-    Example:
-    u = [1, 2, 3, 4, 5, 4, 2, 2, 7, 10]
-    v = [9, 2, 7, 6, 5, 4, 7, 6, 11, 7]
-    len(u) = len(v) = 10
-    set(u) = {1, 2, 3, 4, 5, 7, 10} is the set of unique values of u (therefore disregarding order and multiplicity)
-    set(v) = {9, 2, 7, 6, 5, 4, 11} is the set of unique values of v (therefore disregarding order and multiplicity)
-    len(set(u)) = 7
-    len(set(v)) = 7
-    set(u and v) = {2, 4, 5, 7}
-    set(u or v) = {1, 2, 3, 4, 5, 6, 7, 9, 10, 11}
-    len(set(u and v)) = 4
-    len(set(u or v)) = 10
-
-    Js = len(set(u and v))/len(set(u or v)) = 4/10 = 0.4
-    Jd = 1 - Js = 1 - 0.4 = 0.6
-
     Args:
         u (any sequence): first vector
         v (any sequence): second vector
@@ -192,28 +155,7 @@ def jaccard_distance(u, v):
     Returns:
         float: the Jaccard distance between u and v
     """
-
-    logger.info(
-        "Compute the Jaccard distance between the two input vectors u and v")
-    logger.info("Transform both vectors into sets of elements")
-    s_u = set(u)
-    logger.info("First input vector u has {} unique values".format(len(s_u)))
-    s_v = set(v)
-    logger.info("Second input vector v has {} unique values".format(len(s_v)))
-    s_u_and_v = s_u.intersection(s_v)
-    logger.info("The intersection set of the two vectors has {} unique values".format(
-        len(s_u_and_v)))
-    s_u_or_v = s_u.union(s_v)
-    logger.info(
-        "The union set of the two vectors has {} unique values".format(len(s_u_or_v)))
-    Js = len(s_u_and_v) / float(len(s_u_or_v))
-    logger.info(
-        "Jaccard similarity index between u and v is Js = {:.5f}".format(Js))
-    Jd = 1 - Js
-    logger.info(
-        "Finally, return the Jaccard distance index between u and v = (1 - Js) = (1 - {:.5f}) = {:.5f}".format(Js, Jd))
-
-    return round(Jd, 5)
+    return round(spatial.distance.jaccard(u,v), 5)
 
 ##########################################################################
 
@@ -235,14 +177,8 @@ def pearson_correlation_distance(u, v):
         float: the Pearson's correlation distance between u and v
 
     """
-
-    logger.info(
-        "Compute the Pearson's correlation coefficient rho between the two input vectors u and v")
+    u = u.flatten().tolist()
+    v = v.flatten().tolist()
     rho = stats.pearsonr(u, v)[0]
-    logger.info(
-        "Pearson's correlation coefficient between u and v is rho = {:.5f}".format(rho))
     rho_d = 1 - rho
-    logger.info(
-        "Finally, return the Pearson's correlation distance between u and v = (1 - rho) = (1 - {:.5f}) = {:.5f}".format(rho, rho_d))
-
     return round(rho_d, 5)
