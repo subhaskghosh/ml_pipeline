@@ -296,13 +296,22 @@ class ActionableFeatureTweaker(object):
               X,
               y,
               epsilon=0.1,
-              costfuncs = 'euclidean_distance, cosine_distance, jaccard_distance, pearson_correlation_distance, unmatched_component_rate'):
+              costfunc = 'euclidean_distance'):
         """
         X (numpy ndarray): Features
         y (numpy ndarray of 1 dim): Class labels
+        costfuncs can be one of:
+        euclidean_distance,
+        cosine_distance,
+        jaccard_distance,
+        pearson_correlation_distance,
+        unmatched_component_rate,
+        chebyshev_distance,
+        canberra_distance
         """
         self.epsilon = float(epsilon)
-        self.costfuncs = self.check_valid_cost_functions(costfuncs)
+        self.costfunc = self.check_valid_cost_functions(costfunc)
+        self.costfunc_name = costfunc
         if self.epsilon <= 0.0:
             self.logger.exception(
                 "epsilon may not be negative. provided %d" % epsilon)
@@ -321,25 +330,48 @@ class ActionableFeatureTweaker(object):
         self.logger.info("Creating the pool of workers")
         pool = mp.Pool()
 
-        self.logger.info("Preparing the input to be sent to each worker of the pool")
+        self.logger.info("Preparing the %d inputs to be sent to each worker of the pool" % self.y_diff[0].size)
         self.input_pairs = zip(range(0, self.y_diff[0].size), self.y_diff[0])
         # create inputs and assign them to the workers in parallel
         inputs = [(X[i], n, i, self.epsilon, self.model, self.paths)
                   for (n, i) in self.input_pairs]
 
+        # if you want to debug things sequentially
+        # for input in inputs:
+        #     x, n, i, epsilon, model, paths = input
+        #     self.compute_epsilon_transformations_of_instance(x, n, i, epsilon, model, paths)
+
         self.logger.info(
             "Computing all the possible epsilon-transformations in parallel")
-        self.X_negatives_transformations = dict(
-            pool.map(self.map_compute_epsilon_transformation, inputs))
+        self.X_negatives_transformations = dict(pool.map(self.map_compute_epsilon_transformation, inputs))
 
         # Original and tweaked
         self.X_negative = self._x_as_df()
         self.X_prime_candidate = self._x_transformation_as_df()
         
         # Compute cost of candidates
+        self.logger.info(
+            "Computing costs")
         tweaked_costs_df, tweaked_signs_df = self._create_tweaked_costs_dataframe()
 
-        pass
+        self.tweaked_costs_df = tweaked_costs_df.copy()
+        self.tweaked_signs_df = tweaked_signs_df.copy()
+
+        # Find minimum cost x' among the candidates and return the updated X
+        self.logger.info(
+            "Find minimum cost x' among the candidates and return the updated X")
+        tweaked_costs_df[self.costfunc_name] = pd.to_numeric(tweaked_costs_df[self.costfunc_name])
+        tweaked_costs_df[self.costfunc_name] = tweaked_costs_df[self.costfunc_name].fillna(np.inf)
+        best = tweaked_costs_df.loc[tweaked_costs_df.reset_index().groupby(['id'])[self.costfunc_name].idxmin()]
+        best = best[best[self.costfunc_name]!=np.inf]
+
+        # ID corresponds to the index of X
+        # We replace the feature values of those inputs with corresponding best candidates and return
+        self.X = pd.DataFrame(self.X, columns=self.feature_names)
+        best.drop(self.costfunc_name, axis=1, inplace=True)
+        self.X.update(best.set_index('id'))
+
+        return [self.X, self.tweaked_costs_df, self.tweaked_signs_df]
 
 
     def map_compute_epsilon_transformation(self, instance):
@@ -420,10 +452,10 @@ class ActionableFeatureTweaker(object):
             - Finally, since there is no condition for x_3, we let it as it is.
         """
         x_prime = x.copy()
-        for condittion in path:
-            feature = condittion['feature']
-            direction = condittion['direction']
-            threshold = condittion['threshold']
+        for condition in path:
+            feature = condition['feature']
+            direction = condition['direction']
+            threshold = condition['threshold']
             feature_id = np.where(self.feature_names==feature)[0][0]
             cond = (feature_id, direction, threshold)
 
@@ -502,7 +534,7 @@ class ActionableFeatureTweaker(object):
 
     def _create_tweaked_costs_dataframe(self):
         # build the heder for the cost DataFrame
-        costs_header = ['id', 'tree_id', 'path_id', 'path_length'] + self.costfuncs
+        costs_header =  ['id', 'tree_id', 'path_id', 'path_length'] + self.feature_names.flatten().tolist() + [self.costfunc_name]
         # build the header for the DataFrame containing the signed transformations
         signs_header = ['id'] + self.feature_names.flatten().tolist()
 
@@ -521,9 +553,9 @@ class ActionableFeatureTweaker(object):
                 x_t = []
                 for feature in self.feature_names:
                     x_t.append(x[feature])
-                x = np.asarray(x_t, dtype=np.longdouble)
+                x = np.asarray(x_t, dtype=np.float64)
                 u = x.flatten().tolist()
-                x = np.asarray(u, dtype=np.longdouble)
+                x = np.asarray(u, dtype=np.float64)
 
                 # There can be more than one candidate
                 x_primes = self.X_prime_candidate[self.X_prime_candidate['id']==i]
@@ -535,19 +567,21 @@ class ActionableFeatureTweaker(object):
                     x_prime = []
                     for feature in self.feature_names:
                         x_prime.append(row[1][feature])
-                    x_prime = np.asarray(x_prime, dtype=np.longdouble)
+                    x_prime = np.asarray(x_prime, dtype=np.float64)
                     u = x_prime.flatten().tolist()
-                    x_prime = np.asarray(u, dtype=np.longdouble)
+                    x_prime = np.asarray(u, dtype=np.float64)
 
                     costs_record = [i, tree_id, path_id, path_length]
                     signs_record = [i]
 
                     if np.array_equal(x, x_prime):
-                        for cf in self.costfuncs:
+                        for cf in self.costfunc:
+                            costs_record.extend(x_prime.tolist())
                             costs_record.append(0)
                     else:
-                        for cf in self.costfuncs:
+                        for cf in self.costfunc:
                             cf_val = self._compute_transformation_cost(x, x_prime, cf)
+                            costs_record.extend(x_prime.tolist())
                             costs_record.append(cf_val)
 
                     # append the record for the DataFrame of costs
