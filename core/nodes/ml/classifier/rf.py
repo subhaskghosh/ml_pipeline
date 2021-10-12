@@ -8,7 +8,7 @@ Table generation:
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import balanced_accuracy_score, fbeta_score, precision_recall_curve
 from sklearn.model_selection import GridSearchCV
-
+import numpy as np
 import matplotlib.pyplot as plt
 
 from core.error import NodeConfigurationError
@@ -55,7 +55,6 @@ class RandomForest(AbstructNode):
         y_test = self.getFromCache(self.input[3])
 
         rf = RandomForestClassifier(n_jobs=-1)
-
 
         if self.mode == "save":
             rf_param_grid = {'criterion': self.search['criterion'],

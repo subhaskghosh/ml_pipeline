@@ -24,3 +24,6 @@ class NodeConfigurationError(Exception):
 
 class CacheViolationError(Exception):
     '''Invalid cache access'''
+
+class NodeDBError(Exception):
+    '''Database errors'''

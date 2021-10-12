@@ -365,13 +365,17 @@ class ActionableFeatureTweaker(object):
         best = tweaked_costs_df.loc[tweaked_costs_df.reset_index().groupby(['id'])[self.costfunc_name].idxmin()]
         best = best[best[self.costfunc_name]!=np.inf]
 
+        sign = tweaked_signs_df.loc[tweaked_signs_df.index.isin(best.index)]
+
         # ID corresponds to the index of X
         # We replace the feature values of those inputs with corresponding best candidates and return
         self.X = pd.DataFrame(self.X, columns=self.feature_names)
+        cost = best.copy()
+        cost.drop(self.feature_names, axis=1, inplace=True)
         best.drop(self.costfunc_name, axis=1, inplace=True)
         self.X.update(best.set_index('id'))
 
-        return [self.X, self.tweaked_costs_df, self.tweaked_signs_df]
+        return [self.X, cost, sign]
 
 
     def map_compute_epsilon_transformation(self, instance):

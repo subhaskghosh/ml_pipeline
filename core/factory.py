@@ -5,6 +5,7 @@ Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
 from core.nodes.common.generic import *
+from core.nodes.extract.db.reader import *
 from core.nodes.extract.file.csv_reader import *
 from core.nodes.info.profiler import *
 from core.nodes.load.file.csv_writer import *
@@ -20,6 +21,7 @@ class NodeFactory(object):
     def __init__(self):
         self.nodes = {
             'extract.csv': 'CSVFIleReaderNode',
+            'extract.postgres': 'PostgresReaderNode',
             'transform.column_name.upper': 'ColumnUppcaseNode',
             'transform.dataframe.truncate': 'DataFrameTruncateExtreme',
             'transform.dataframe.filter.string': 'DataFrameStringFilter',

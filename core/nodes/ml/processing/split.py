@@ -54,7 +54,7 @@ class TrainTestSplit(AbstructNode):
         self.data_columns = self.getFromCache(self.data_columns)
         data_df = self.getFromCache(self.input)
 
-        X_arr = data_df[self.data_columns ].values
+        X_arr = data_df[self.data_columns].values
         y_arr = data_df[self.label].values
 
         X_train, X_test, y_train, y_test = train_test_split(X_arr,

@@ -1,3 +1,4 @@
+import pickle
 from unittest import TestCase
 import sklearn
 import sklearn.datasets
@@ -21,7 +22,7 @@ class TestActionableFeatureTweaker(TestCase):
         train, test, labels_train, labels_test = \
             sklearn.model_selection.train_test_split(breast_cancer.data, breast_cancer.target, train_size=0.80)
 
-        rf = sklearn.ensemble.RandomForestClassifier(criterion='gini', n_estimators=60)
+        rf = sklearn.ensemble.RandomForestClassifier(n_estimators=30)
 
         rf.fit(train, labels_train)
 
@@ -32,16 +33,20 @@ class TestActionableFeatureTweaker(TestCase):
                                        class_names = breast_cancer.target_names,
                                        target_class = 'malignant')
 
-        [test_tweak, tweak_costs, tweak_signs] = aft.tweak(test, labels_test, epsilon=0.1)
+        costfunc = 'euclidean_distance'
+
+        [test_tweak, tweak_costs, tweak_signs] = aft.tweak(test, labels_test, epsilon=0.1, costfunc=costfunc)
         X_test_proba = rf.predict_proba(test)
         X_test_tweak_proba = rf.predict_proba(test_tweak)
 
         x_test_pos = X_test_proba[:, 1]
         x_test_tweak_pos = X_test_tweak_proba[:, 1]
 
-        fig, axs = plt.subplots(1, 2, sharey=True, tight_layout=True, figsize=(10, 5))
+        fig, axs = plt.subplots(1, 4, sharey=False, tight_layout=True, figsize=(20, 5))
         _ = axs[0].hist(x_test_pos, bins=40)
         _ = axs[1].hist(x_test_tweak_pos, bins=40)
+        _ = axs[2].scatter(x_test_pos, x_test_tweak_pos)
+        _ = axs[3].scatter(tweak_costs['id'].values.tolist(), tweak_costs[costfunc].values.tolist())
 
         plt.show()
 
@@ -72,27 +77,62 @@ class TestActionableFeatureTweaker(TestCase):
                                                      train_size=0.80,
                                                      shuffle=True)
 
-        rf = sklearn.ensemble.RandomForestClassifier(criterion='gini', n_estimators=60)
+        rf = sklearn.ensemble.RandomForestClassifier(criterion='entropy', n_estimators=30)
 
         rf.fit(train, labels_train)
 
         print(sklearn.metrics.accuracy_score(labels_test, rf.predict(test)))
-
+        costfunc = 'euclidean_distance'
         aft = ActionableFeatureTweaker(model = rf,
                                        feature_names = epileptic_seizure_recognition.feature_names,
                                        class_names = epileptic_seizure_recognition.target_names,
                                        target_class = 'epileptic')
 
-        [test_tweak, tweak_costs, tweak_signs] = aft.tweak(test, labels_test, epsilon=0.1)
+        [test_tweak, tweak_costs, tweak_signs] = aft.tweak(test, labels_test, epsilon=0.1, costfunc=costfunc)
         X_test_proba = rf.predict_proba(test)
         X_test_tweak_proba = rf.predict_proba(test_tweak)
 
         x_test_pos = X_test_proba[:, 1]
         x_test_tweak_pos = X_test_tweak_proba[:, 1]
 
-        fig, axs = plt.subplots(1, 2, sharey=True, tight_layout=True, figsize=(10, 5))
+        fig, axs = plt.subplots(1, 4, sharey=False, tight_layout=True, figsize=(20, 5))
         _ = axs[0].hist(x_test_pos, bins=40)
         _ = axs[1].hist(x_test_tweak_pos, bins=40)
+        _ = axs[2].scatter(x_test_pos, x_test_tweak_pos)
+        _ = axs[3].scatter(tweak_costs['id'].values.tolist(), tweak_costs[costfunc].values.tolist())
 
         plt.show()
 
+    def test_case_3(self):
+        train = np.load('/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/train.npy')
+        test = np.load('/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/test.npy')
+        labels_train = np.load('/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/y_train.npy')
+        labels_test = np.load('/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/y_test.npy')
+        target_names = ['loss', 'win']
+        feature_names = np.load('/Users/ghoshsk/src/ds/ml_pipeline/test/resources/dummy/model/features.npy')
+
+        rf = sklearn.ensemble.RandomForestClassifier(criterion='entropy',
+                                                     n_estimators=100,
+                                                     max_depth=10)
+        rf.fit(train, labels_train)
+        print(sklearn.metrics.accuracy_score(labels_test, rf.predict(test)))
+        costfunc = 'euclidean_distance'
+        aft = ActionableFeatureTweaker(model=rf,
+                                       feature_names=feature_names,
+                                       class_names=target_names,
+                                       target_class='win')
+
+        [test_tweak, tweak_costs, tweak_signs] = aft.tweak(test, labels_test, epsilon=0.1, costfunc=costfunc)
+        X_test_proba = rf.predict_proba(test)
+        X_test_tweak_proba = rf.predict_proba(test_tweak)
+
+        x_test_pos = X_test_proba[:, 1]
+        x_test_tweak_pos = X_test_tweak_proba[:, 1]
+
+        fig, axs = plt.subplots(1, 4, sharey=False, tight_layout=True, figsize=(20, 5))
+        _ = axs[0].hist(x_test_pos, bins=40)
+        _ = axs[1].hist(x_test_tweak_pos, bins=40)
+        _ = axs[2].scatter(x_test_pos, x_test_tweak_pos)
+        _ = axs[3].scatter(tweak_costs['id'].values.tolist(), tweak_costs[costfunc].values.tolist())
+
+        plt.show()
