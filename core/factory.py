@@ -8,6 +8,7 @@ from core.nodes.common.generic import *
 from core.nodes.extract.db.reader import *
 from core.nodes.extract.file.csv_reader import *
 from core.nodes.info.profiler import *
+from core.nodes.load.db.writer import *
 from core.nodes.load.file.csv_writer import *
 from core.nodes.ml.classifier.rf import *
 from core.nodes.ml.clustering.kmeans import *
@@ -54,7 +55,9 @@ class NodeFactory(object):
             'ml.transform.RobustScaleTransformer': 'RobustScaleTransformer',
             'ml.transform.WoeTransformer': 'WoeTransformer',
             'ml.transform.ColumnTransformer': 'ColumnTransformerNode',
-            'ml.classifier.RandomForest': 'RandomForest'
+            'ml.classifier.RandomForest': 'RandomForest',
+            'load.metadata.postgres': 'PostgresMetadataWriterNode',
+            'query.metadata.postgres': 'PostgresQueryMetadataNode'
         }
 
     def get(self, name, parameter, input, output):

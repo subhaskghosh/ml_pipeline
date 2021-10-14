@@ -2,10 +2,11 @@ import argparse
 import json
 import os
 import sys
-import pprint
 from core.builder import DAGBuilder
 from typing import Any, List, Optional
 from pathlib import Path
+
+from core.logmanager import get_logger
 
 def parse_args(args: Optional[List[Any]] = None) -> argparse.Namespace:
     """Parse the command line arguments for the `ml_pipeline`
@@ -43,7 +44,7 @@ def main(args: Optional[List[Any]] = None) -> None:
     Args:
       args: Arguments for the programme (Default value=None).
     """
-
+    logger = get_logger("pipeline-main")
     # Parse the arguments
     parsed_args = parse_args(args)
     kwargs = vars(parsed_args)
@@ -53,11 +54,11 @@ def main(args: Optional[List[Any]] = None) -> None:
 
 
     if not os.path.exists(templete_path):
-        print(f'The path {templete_path} does not exist')
+        logger.exception(f'The path {templete_path} does not exist')
         sys.exit()
     else:
         if not os.path.exists(parameter_path):
-            print(f'The path {parameter_path} does not exist')
+            logger.exception(f'The path {parameter_path} does not exist')
             sys.exit()
         else:
             with open(parameter_path) as json_file:
@@ -66,8 +67,7 @@ def main(args: Optional[List[Any]] = None) -> None:
                 dag = db.get()
                 db.show()
                 r = dag.run()
-                pp = pprint.PrettyPrinter(indent=4)
-                pp.pprint(r)
+                logger.info(r)
 
 if __name__ == "__main__":
    main(sys.argv[1:])

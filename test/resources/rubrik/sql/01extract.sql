@@ -1,1 +1,1 @@
-select * from dna_ml.features_vector where DNA_STD_DC_OPPTY_STAGE_NAME like '7%
+select * from import.d where DNA_STD_DC_OPPTY_STAGE_NAME like '7%'

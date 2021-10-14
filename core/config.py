@@ -26,7 +26,7 @@ class ConfigBuilder(object):
                 self.stream = open(path, 'r')
                 self.config = yaml.load(self.stream, Loader=SubstitutionLoader) # yaml.Loader
             except FileNotFoundError as e:
-                self.logger.warn(
+                self.logger.exception(
                     'Error opening Config "{0}"'.format(e))
         else:
             self.config = None
@@ -35,6 +35,4 @@ class ConfigBuilder(object):
         return self.config
 
     def show(self):
-        import pprint
-        pp = pprint.PrettyPrinter(indent=4)
-        pp.pprint(self.config)
+        self.logger.info(self.config)

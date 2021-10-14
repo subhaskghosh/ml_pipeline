@@ -50,10 +50,14 @@ class PostgresReaderNode(AbstructNode):
             with pg.connect(self.connection_string) as connection:
                 # Read the sql file
                 query = open(self.sql, 'r')
-                # connection == the connection to your database, in your case prob_db
                 try:
+                    # Execute the SQL and get a dataframe
                     df = pd.read_sql_query(query.read(), connection)
+
+                    # Add dataframe out output
                     self.addToCache(self.output, df)
+
+                    # Close the file
                     query.close()
                 except DatabaseError as e:
                     self.logger.exception('Query error {0}'.format(e))
