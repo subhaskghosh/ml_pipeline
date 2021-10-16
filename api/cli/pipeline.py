@@ -1,3 +1,11 @@
+"""
+CLI interface for running the pipeline
+"""
+
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
+
 import argparse
 import json
 import os

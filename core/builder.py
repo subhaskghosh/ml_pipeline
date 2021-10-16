@@ -1,10 +1,9 @@
-""" Builder class for DAG.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
-
+Builder class for DAG.
+"""
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
 from core.config import ConfigBuilder
 from core.dag import Dag
 from core.error import ConfigNotFoundError

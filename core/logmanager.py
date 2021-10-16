@@ -1,3 +1,10 @@
+"""
+Logging related settings
+"""
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
+
 import logging
 from logging.handlers import RotatingFileHandler
 import sys

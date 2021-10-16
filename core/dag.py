@@ -2,11 +2,10 @@
 This script defines the class that can be used for building a DAG with nodes.
 based on https://github.com/xianghuzhao/paradag, but using networkx and
 added executable type for nodes.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
 from core.cache import SimpleCache
 from core.error import *
 import networkx as nx

@@ -1,10 +1,10 @@
 """
 This script defines the class that can be used for Actionable Feature Tweaking.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
+
 import collections
 import inspect
 
@@ -26,7 +26,7 @@ class ActionableFeatureTweaker(object):
     """Based on Interpretable Predictions of Tree-based Ensembles via Actionable Feature Tweaking, KDD'17
     Currently supports Tree classifiers built using scikit-learn
     Future plan includes supporting CATBoost and XGB
-    Version: 0.0.1
+    Version: 1.0
     """
 
     def __init__(self,

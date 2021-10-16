@@ -5,21 +5,58 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ml_pipeline.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ml_pipeline.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cli/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/cli/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/cache.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/cache.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/dag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/error.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/error.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/executor.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/executor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/logmanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/logmanager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/common/generic.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/common/generic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/extract/db/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/extract/db/reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/info/profiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/info/profiler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/nodes/load/db/writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/load/db/writer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/model/kmeans.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/model/kmeans.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/sql/01extract.sql" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/sql/01extract.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/load/file/csv_writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/load/file/csv_writer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/classifier/rf.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/classifier/rf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/processing/split.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/processing/split.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/selector.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/selector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/yaml_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/yaml_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgfutter" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/yaml_loader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="59" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Setup Script" />
       </list>
     </option>
   </component>
@@ -53,57 +90,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/core/sql/reader.py" />
         <option value="$PROJECT_DIR$/core/VERSION" />
-        <option value="$PROJECT_DIR$/core/selector.py" />
         <option value="$PROJECT_DIR$/test/resources/rubrik_clustering.yaml" />
         <option value="$PROJECT_DIR$/core/test_DAGBuilder.py" />
         <option value="$PROJECT_DIR$/core/node.py" />
         <option value="$PROJECT_DIR$/test/test_configBuilder.py" />
-        <option value="$PROJECT_DIR$/core/nodes/common/generic.py" />
-        <option value="$PROJECT_DIR$/core/nodes/load/file/csv_writer.py" />
-        <option value="$PROJECT_DIR$/core/yaml_loader.py" />
         <option value="$PROJECT_DIR$/test/test_DAGBuilder.py" />
         <option value="$PROJECT_DIR$/core/logging.py" />
-        <option value="$PROJECT_DIR$/core/cache.py" />
-        <option value="$PROJECT_DIR$/core/executor.py" />
-        <option value="$PROJECT_DIR$/core/processor.py" />
-        <option value="$PROJECT_DIR$/core/nodes/node.py" />
-        <option value="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" />
         <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" />
         <option value="$PROJECT_DIR$/test/test_dag.py" />
-        <option value="$PROJECT_DIR$/core/builder.py" />
         <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml" />
         <option value="$PROJECT_DIR$/test/resources/dummy/dummy_clustering_predict.yaml" />
         <option value="$PROJECT_DIR$/core/nodes/ml/transformer/woe.py" />
-        <option value="$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py" />
         <option value="$PROJECT_DIR$/core/nodes/ml/classifier.py" />
-        <option value="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" />
-        <option value="$PROJECT_DIR$/core/nodes/info/profiler.py" />
-        <option value="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" />
-        <option value="$PROJECT_DIR$/core/dag.py" />
         <option value="$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml" />
-        <option value="$PROJECT_DIR$/core/logmanager.py" />
         <option value="$PROJECT_DIR$/core/nodes/ml/cost_function.py" />
         <option value="$PROJECT_DIR$/core/nodes/ml/teaft/cost_function.py" />
-        <option value="$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py" />
-        <option value="$PROJECT_DIR$/core/nodes/ml/processing/split.py" />
-        <option value="$PROJECT_DIR$/core/nodes/ml/classifier/rf.py" />
-        <option value="$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py" />
         <option value="$PROJECT_DIR$/test/test_actionableFeatureTweaker.py" />
-        <option value="$PROJECT_DIR$/core/error.py" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/sql/01extract.sql" />
-        <option value="$PROJECT_DIR$/core/nodes/extract/db/reader.py" />
-        <option value="$PROJECT_DIR$/api/cli/pipeline.py" />
-        <option value="$PROJECT_DIR$/core/config.py" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/sql/02write_metadata.sql" />
-        <option value="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/sql/03query_metadata.sql" />
         <option value="$PROJECT_DIR$/test/test_dataFrameCopy.py" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json" />
-        <option value="$PROJECT_DIR$/core/factory.py" />
-        <option value="$PROJECT_DIR$/core/nodes/load/db/writer.py" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml" />
+        <option value="$PROJECT_DIR$/api/cli/pipeline.py" />
+        <option value="$PROJECT_DIR$/core/nodes/load/db/writer.py" />
+        <option value="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" />
+        <option value="$PROJECT_DIR$/core/nodes/common/generic.py" />
+        <option value="$PROJECT_DIR$/core/nodes/extract/db/reader.py" />
+        <option value="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" />
+        <option value="$PROJECT_DIR$/core/builder.py" />
+        <option value="$PROJECT_DIR$/core/nodes/info/profiler.py" />
+        <option value="$PROJECT_DIR$/core/nodes/load/file/csv_writer.py" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/classifier/rf.py" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/processing/split.py" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py" />
+        <option value="$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py" />
+        <option value="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" />
+        <option value="$PROJECT_DIR$/core/nodes/node.py" />
+        <option value="$PROJECT_DIR$/core/cache.py" />
+        <option value="$PROJECT_DIR$/core/config.py" />
+        <option value="$PROJECT_DIR$/core/dag.py" />
+        <option value="$PROJECT_DIR$/core/error.py" />
+        <option value="$PROJECT_DIR$/core/executor.py" />
+        <option value="$PROJECT_DIR$/core/factory.py" />
+        <option value="$PROJECT_DIR$/core/logmanager.py" />
+        <option value="$PROJECT_DIR$/core/processor.py" />
+        <option value="$PROJECT_DIR$/core/selector.py" />
+        <option value="$PROJECT_DIR$/core/yaml_loader.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
   </component>
@@ -137,28 +174,6 @@
               <item name="api" type="462c0819:PsiDirectoryNode" />
               <item name="cli" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="nodes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -181,7 +196,19 @@
       <recent name="$PROJECT_DIR$/test/resources/dummy/csv" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.pipeline_db_rubrik">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.pipeline">
     <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ml_pipeline" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -338,11 +365,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pipeline" />
         <item itemvalue="Python tests.Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" />
         <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_3" />
         <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" />
         <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_2" />
-        <item itemvalue="Python.pipeline" />
       </list>
     </recent_temporary>
   </component>
@@ -393,9 +420,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -403,7 +429,7 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32982457" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28187135" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28187135" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.27017543" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -487,174 +513,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/numpy/core/_methods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="177" selection-start-line="177" selection-end-line="177" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/scipy/stats/stats.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="3923" selection-start-line="3923" selection-end-line="3923" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/scipy/spatial/distance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="1188" column="12" selection-start-line="1188" selection-start-column="4" selection-end-line="1188" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/pandas/core/nanops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/sklearn/utils/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1318">
-          <caret line="104" column="8" selection-start-line="104" selection-start-column="8" selection-end-line="104" selection-end-column="8" />
-          <folding>
-            <element signature="e#68#82#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.3/python_stubs/-1380346986/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="334" column="4" selection-start-line="334" selection-start-column="4" selection-end-line="334" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/sklearn/datasets/_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1424">
-          <caret line="723" selection-start-line="723" selection-end-line="723" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/sklearn/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3747">
-          <caret line="434" selection-start-line="434" selection-end-line="434" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/ml_pipeline.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/ml_pipeline.log.2">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3103" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/processing/split.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="70" column="52" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
-          <folding>
-            <element signature="e#260#312#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/sklearn/ensemble/_forest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5071">
-          <caret line="1592" column="47" selection-start-line="1592" selection-start-column="33" selection-end-line="1592" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-822">
-          <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
-          <folding>
-            <element signature="e#233#251#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/classifier/rf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="56" column="46" lean-forward="true" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="46" />
-          <folding>
-            <element signature="e#260#311#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/common/db/connection.py" />
-    <entry file="file://$PROJECT_DIR$/core/nodes/common/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-336" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="247" column="42" lean-forward="true" selection-start-line="247" selection-start-column="42" selection-end-line="247" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_actionableFeatureTweaker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="115" column="65" selection-start-line="115" selection-start-column="65" selection-end-line="115" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/psycopg2/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="719">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-          <folding>
-            <element signature="e#2088#2523#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="45" column="39" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="39" />
-          <folding>
-            <element signature="e#277#322#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/error.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" selection-start-line="14" selection-end-line="18" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="111" column="45" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
-          <folding>
-            <element signature="e#260#294#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -669,16 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="290" selection-start-line="290" selection-end-line="290" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/cli/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -703,27 +555,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/dag.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="217" selection-start-line="217" selection-end-line="217" />
-          <folding>
-            <element signature="e#374#408#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/jinja2/environment.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="1303" selection-start-line="1303" selection-end-line="1303" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
@@ -741,33 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/extract/db/reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="60" column="33" selection-start-line="56" selection-start-column="20" selection-end-line="60" selection-end-column="33" />
-          <folding>
-            <element signature="e#301#359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#177#214#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/rubrik/sql/03query_metadata.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -775,47 +583,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/common/sql/template2sql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="230" selection-start-line="230" selection-end-line="230" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/logmanager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/sqlalchemy/sql/schema.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="4244" column="14" selection-start-line="4244" selection-start-column="8" selection-end-line="4244" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="96" column="22" lean-forward="true" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="905" column="37" selection-start-line="904" selection-start-column="8" selection-end-line="905" selection-end-column="37" />
-          <folding>
-            <element signature="e#277#327#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -836,50 +607,296 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/processor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#190#233#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/factory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
-          <folding>
-            <element signature="e#200#239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/load/db/writer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="176" column="59" selection-start-line="176" selection-start-column="59" selection-end-line="176" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/cli/ml_pipeline.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider" />
       <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7065">
-          <caret line="361" column="20" selection-start-line="361" selection-start-column="20" selection-end-line="361" selection-end-column="20" />
+        <state relative-caret-position="6990">
+          <caret line="356" column="20" selection-start-line="356" selection-start-column="20" selection-end-line="356" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/VERSION">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/cli/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/cli/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/common/sql/template2sql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="57" selection-start-line="1" selection-start-column="57" selection-end-line="1" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/common/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/extract/db/reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#301#359#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="e#277#322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/info/profiler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/load/db/writer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/load/file/csv_writer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/classifier/rf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="e#260#311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="e#260#294#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/processing/split.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="e#260#312#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-141">
+          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding>
+            <element signature="e#233#258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding>
+            <element signature="e#233#251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/ml/transformer/woe.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/nodes/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/cache.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/dag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding>
+            <element signature="e#374#408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/error.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/executor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/factory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/logmanager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/selector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/processor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="53" selection-start-line="1" selection-start-column="53" selection-end-line="1" selection-end-column="53" />
+          <folding>
+            <element signature="e#190#233#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_pipeline.egg-info/SOURCES.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1019" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_pipeline.egg-info/top_level.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_pipeline.egg-info/dependency_links.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/yaml_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="59" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

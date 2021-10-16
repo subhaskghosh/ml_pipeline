@@ -1,15 +1,15 @@
 """ Identifies custom tags in YAML template and substitutes them.
 1. Returns a stricter format - OtrderedDict instead of plain python dict
 2. Supports rendering Date, UUID, Var - simple rendering for now
+3. Added supports for resolving password with !Password tag
 Based on ideas from:
 Emrichen – Template engine for YAML & JSON: https://github.com/con2/emrichen#emrichen--template-engine-for-yaml--json
 This script defines the class that can be used for building a configuration object.
 The config object can be feed into DAG to generate the pipeline.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
 
 from typing import Any, Dict, Tuple, Type
 from collections import OrderedDict

@@ -1,9 +1,14 @@
 """ Construct node types based on the config dict.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
+
+NOTE: do not remove unused imports, they are using in globals() call below
+
 """
+
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
+
+############## DO NOT REMOVE UNUSED IMPORTS ############
 from core.nodes.common.generic import *
 from core.nodes.extract.db.reader import *
 from core.nodes.extract.file.csv_reader import *
@@ -16,9 +21,10 @@ from core.nodes.ml.processing.split import *
 from core.nodes.ml.transformer.transformation import *
 from core.nodes.node import *
 from core.nodes.transform.preprocessing import *
+############## DO NOT REMOVE UNUSED IMPORTS ############
 
 class NodeFactory(object):
-    """Construct a node by name type and returns"""
+    """Construct a node by name type and return"""
     def __init__(self):
         self.nodes = {
             'extract.csv': 'CSVFIleReaderNode',

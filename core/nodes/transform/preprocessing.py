@@ -1,12 +1,11 @@
 """ Executable node all dataframe preprocessing.
 This script defines the class that can be used for defining a node in the DAG.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
-from sklearn.preprocessing import PowerTransformer
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
 
+from sklearn.preprocessing import PowerTransformer
 from core.error import NodeConfigurationError
 from core.nodes.node import AbstructNode
 from sklearn.impute import KNNImputer, SimpleImputer

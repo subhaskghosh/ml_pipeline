@@ -1,9 +1,9 @@
-""" DAG next node selection method.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
+""" DAG next node selection method.. Since DAG and processor is sequential -
+FullSelector is meaningless and is kept for future
 """
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
 
 class Selector(object):
     '''A selector just selects the next idle vertex'''

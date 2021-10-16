@@ -1,10 +1,9 @@
 """ Executable node of ML type.
 This script defines the class that can be used for defining a node in the DAG.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import balanced_accuracy_score, fbeta_score, precision_recall_curve
 from sklearn.model_selection import GridSearchCV

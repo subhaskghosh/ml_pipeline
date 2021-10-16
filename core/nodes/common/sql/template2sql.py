@@ -1,3 +1,10 @@
+"""
+Converts SQL template to formatted SQL, Based on jina2SQL
+"""
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
+
 from jinja2 import Environment
 from jinja2 import Template
 from jinja2.ext import Extension

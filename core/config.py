@@ -1,11 +1,10 @@
 """ YAML to configuration.
 This script defines the class that can be used for building a configuration object.
 The config object can be feed into DAG to generate the pipeline.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
 
 import yaml
 

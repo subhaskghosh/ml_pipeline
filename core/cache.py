@@ -1,10 +1,10 @@
 """ DAG cache - where variable can be stored and retrived. Think the was variables
 in a cell of note book becomes available to subsequent cells.
-Written by Subhas K Ghosh (subhas.k.ghosh@gmail.com).
-(c) Copyright , All Rights Reserved.
-Table generation:
-(c) Copyright Subhas K Ghosh, 2021.
 """
+__author__ = "Subhas K. Ghosh"
+__copyright__ = "Copyright (C) 2021 GTM.ai"
+__version__ = "1.0"
+
 from core.error import CacheViolationError
 from core.logmanager import get_logger
 
