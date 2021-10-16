@@ -14,6 +14,7 @@ __version__ = "1.0"
 from typing import Any, Dict, Tuple, Type
 from collections import OrderedDict
 import yaml
+import keyring
 
 tag_registry = {}
 user_params = {}
@@ -75,6 +76,19 @@ class Var(BaseTag):
             return f"{user_params[self.data]}"
         else:
             return f"UNDEFINED"
+
+class Password(BaseTag):
+    """
+    arguments: User name
+    example: !Password ghoshsk
+    description: and corresponding password is retrived from keyring.
+
+    NOTE: service name is hardcoded,
+    use python -m keyring set ml_pipeline username to setup the password
+    """
+
+    def resolve(self):
+        return keyring.get_password("ml_pipeline", self.data)
 
 def construct_tagless_yaml(loader: yaml.Loader, node: yaml.Node):
     # From yaml.constructor.BaseConstructor#construct_object
