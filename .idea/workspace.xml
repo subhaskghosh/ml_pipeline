@@ -2,124 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e60191d-1d9f-4141-99df-29eefe8f3786" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ml_pipeline.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ml_pipeline.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/nodes/load/db/writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/load/db/writer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ml_pipeline.log.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ml_pipeline.log.2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/csv_output/clusters_lands_70K_amer_com_strategic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/csv_output/clusters_lands_70K_amer_com_strategic.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/model/kmeans.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/model/kmeans.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/sql/01extract.sql" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/sql/01extract.sql" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/extract/db/reader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="60" column="33" selection-start-line="56" selection-start-column="20" selection-end-line="60" selection-end-column="33" />
-              <folding>
-                <element signature="e#301#359#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/processor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="e#190#233#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/builder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-              <folding>
-                <element signature="e#177#214#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/factory.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
-              <folding>
-                <element signature="e#200#239#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/load/db/writer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="176" column="59" selection-start-line="176" selection-start-column="59" selection-end-line="176" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/transform/preprocessing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="905" column="37" selection-start-line="904" selection-start-column="8" selection-end-line="905" selection-end-column="37" />
-              <folding>
-                <element signature="e#277#327#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_dataFrameCopy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="67" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7065">
-              <caret line="361" column="20" selection-start-line="361" selection-start-column="20" selection-end-line="361" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -271,6 +166,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$USER_HOME$/anaconda2/envs/Python3" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -284,18 +180,6 @@
       <recent name="$PROJECT_DIR$/core/nodes/common/db" />
       <recent name="$PROJECT_DIR$/test/resources/dummy/csv" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.pipeline_db_rubrik">
     <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -533,6 +417,9 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.sql" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

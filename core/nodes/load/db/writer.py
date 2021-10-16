@@ -25,7 +25,7 @@ Table generation:
 (c) Copyright Subhas K Ghosh, 2021.
 """
 from io import StringIO
-
+import urllib
 from sqlalchemy import create_engine, MetaData
 
 from core.error import NodeConfigurationError, NodeDBError
@@ -420,9 +420,9 @@ class PostgresLoadDataFrameNode(AbstructNode):
             self.conn = self.parameter['conn']
             host = self.conn['parameter']['host']
             port = self.conn['parameter']['port']
-            dbname = self.conn['parameter']['dbname']
-            user = self.conn['parameter']['user']
-            password = self.conn['parameter']['password']
+            dbname = urllib.parse.quote(self.conn['parameter']['dbname'])
+            user = urllib.parse.quote(self.conn['parameter']['user'])
+            password = urllib.parse.quote(self.conn['parameter']['password'])
             self.connection_string = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}'
         else:
             self.logger.exception('DB connection details not provided "{0}"'.format(parameter))
