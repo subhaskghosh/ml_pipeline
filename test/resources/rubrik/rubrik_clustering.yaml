@@ -22,11 +22,11 @@
 #          sql: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/sql/01extract.sql"
 #          conn:
 #            parameter:
-#              host: localhost
-#              port: 5432
-#              dbname: test
-#              user: postgres
-#              password: "m0nd0d0r1"
+#              host: !Var dbhost
+#              port: !Var dbport
+#              dbname: !Var dbname
+#              user: !Var dbuser
+#              password: !Var dbpassword
 #        input: null
 #        output: raw
     - transform.column_name.upper:
@@ -304,11 +304,11 @@
           sql: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/sql/02write_metadata.sql"
           conn:
             parameter:
-              host: localhost
-              port: 5432
-              dbname: test
-              user: postgres
-              password: "m0nd0d0r1"
+              host: !Var dbhost
+              port: !Var dbport
+              dbname: !Var dbname
+              user: !Var dbuser
+              password: !Var dbpassword
           sql_type: template
           sql_parameters:
             'name': customer
@@ -326,11 +326,11 @@
           sql: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/sql/03query_metadata.sql"
           conn:
             parameter:
-              host: localhost
-              port: 5432
-              dbname: test
-              user: postgres
-              password: "m0nd0d0r1"
+              host: !Var dbhost
+              port: !Var dbport
+              dbname: !Var dbname
+              user: !Var dbuser
+              password: !Var dbpassword
           sql_type: template
           sql_parameters:
             'name': customer
@@ -341,26 +341,43 @@
             'results': results
             'notes': notes
             'insert_date': current_date
+          select_column: cut_id
         input: null
         output: cut_id
-    - load.csv:
+    - load.postgres: # Load the cluster labels with cut id
         parameter:
-          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/csv_output/clusters_lands_70K_amer_com_strategic.csv"
-          index: false
+          conn:
+            parameter:
+              host: !Var dbhost
+              port: !Var dbport
+              dbname: !Var dbname
+              user: !Var dbuser
+              password: !Var dbpassword
+          columns: ['cut_id', 'ACCOUNT_ID', 'OPPORTUNITY_ID', 'classification_label']
+          schema: 'dna_ml'
+          table: 'cluster_classification'
+          add_column: cut_id
+          add_column_name: 'cut_id'
         input: kmeans_labeled
         output: null
-    - load.csv:
-        parameter:
-          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/csv_output/n_clusters_lands_70K_amer_com_strategic.csv"
-          index: false
-        input: n_kmeans_labeled
-        output: null
-    - info.cluster.profiler:
-        parameter:
-          report_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/csv_output/profile.csv"
-          columns: features
-          from_variable: yes
-          class_label: 'classification_label'
-          win_loss_column: 'DNA_STD_DC_END_RESULT'
-        input: kmeans_labeled
-        output: null
+#    - load.csv:
+#        parameter:
+#          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/csv_output/clusters_lands_70K_amer_com_strategic.csv"
+#          index: false
+#        input: kmeans_labeled
+#        output: null
+#    - load.csv:
+#        parameter:
+#          path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/csv_output/n_clusters_lands_70K_amer_com_strategic.csv"
+#          index: false
+#        input: n_kmeans_labeled
+#        output: null
+#    - info.cluster.profiler:
+#        parameter:
+#          report_path: "/Users/ghoshsk/src/ds/ml_pipeline/test/resources/rubrik/csv_output/profile.csv"
+#          columns: features
+#          from_variable: yes
+#          class_label: 'classification_label'
+#          win_loss_column: 'DNA_STD_DC_END_RESULT'
+#        input: kmeans_labeled
+#        output: null

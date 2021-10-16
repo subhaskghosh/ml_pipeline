@@ -1,5 +1,10 @@
 {
   "run_date":"20210920",
   "features": "numeric_p2",
-  "customer_name": "Rubrik"
+  "customer_name": "Rubrik",
+  "dbhost": "localhost",
+  "dbport": 5432,
+  "dbname": "test",
+  "dbuser": "postgres",
+  "dbpassword": "m0nd0d0r1"
 }

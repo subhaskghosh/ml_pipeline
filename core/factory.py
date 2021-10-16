@@ -57,7 +57,8 @@ class NodeFactory(object):
             'ml.transform.ColumnTransformer': 'ColumnTransformerNode',
             'ml.classifier.RandomForest': 'RandomForest',
             'load.metadata.postgres': 'PostgresMetadataWriterNode',
-            'query.metadata.postgres': 'PostgresQueryMetadataNode'
+            'query.metadata.postgres': 'PostgresQueryMetadataNode',
+            'load.postgres': 'PostgresLoadDataFrameNode'
         }
 
     def get(self, name, parameter, input, output):
