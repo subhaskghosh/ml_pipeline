@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9e60191d-1d9f-4141-99df-29eefe8f3786" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/cli/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/cli/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/VERSION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/yaml_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/yaml_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_actionableFeatureTweaker.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_actionableFeatureTweaker.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,52 +12,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="531">
-                <caret line="41" selection-start-line="41" selection-end-line="41" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_dag.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-205">
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/dag.py">
+        <entry file="file://$PROJECT_DIR$/test/test_actionableFeatureTweaker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1906">
-              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/cli/pipeline.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="75" column="92" selection-start-line="75" selection-start-column="92" selection-end-line="75" selection-end-column="92" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="29" />
+            <state relative-caret-position="-855">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,7 +79,6 @@
         <option value="$PROJECT_DIR$/test/resources/dummy/dummy_win_loss_classifier.yaml" />
         <option value="$PROJECT_DIR$/core/nodes/ml/cost_function.py" />
         <option value="$PROJECT_DIR$/core/nodes/ml/teaft/cost_function.py" />
-        <option value="$PROJECT_DIR$/test/test_actionableFeatureTweaker.py" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/sql/01extract.sql" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/sql/02write_metadata.sql" />
         <option value="$PROJECT_DIR$/test/resources/rubrik/sql/03query_metadata.sql" />
@@ -156,6 +114,7 @@
         <option value="$PROJECT_DIR$/core/yaml_loader.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/api/cli/pipeline.py" />
+        <option value="$PROJECT_DIR$/test/test_actionableFeatureTweaker.py" />
       </list>
     </option>
   </component>
@@ -193,6 +152,12 @@
               <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
               <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml_pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="nodes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ml_pipeline" type="b2602c69:ProjectViewProjectNode" />
@@ -269,28 +234,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pipeline">
-    <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="ml_pipeline" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api/cli" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/cli/pipeline.py" />
-      <option name="PARAMETERS" value="--config_path=$PROJECT_DIR$/test/resources/dummy/dummy_clustering.yaml --config_parameters=$PROJECT_DIR$/test/resources/dummy/dummy_clustering.json" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_2">
     <configuration name="pipeline_classifier" type="PythonConfigurationType" factoryName="Python">
       <module name="ml_pipeline" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -384,7 +328,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_3" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_dag.TestDag.test_add_edge" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="ml_pipeline" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -395,11 +339,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_3&quot;" />
+      <option name="_new_target" value="&quot;test_dag.TestDag.test_add_edge&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_dag.TestDag.test_add_vertex" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="ml_pipeline" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -410,7 +354,22 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_dataFrameCopy.TestDataFrameCopy.test_copy&quot;" />
+      <option name="_new_target" value="&quot;test_dag.TestDag.test_add_vertex&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Nosetests for test_dag.TestDag.test_validate_vertex" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <module name="ml_pipeline" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_dag.TestDag.test_validate_vertex&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -418,19 +377,19 @@
       <item itemvalue="Python.pipeline_predict" />
       <item itemvalue="Python.pipeline_classifier" />
       <item itemvalue="Python.pipeline_db_rubrik" />
-      <item itemvalue="Python.pipeline" />
+      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_vertex" />
+      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_edge" />
+      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_validate_vertex" />
       <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" />
       <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_2" />
-      <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_3" />
-      <item itemvalue="Python tests.Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.pipeline" />
-        <item itemvalue="Python tests.Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" />
-        <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_3" />
-        <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" />
         <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_2" />
+        <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" />
+        <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_validate_vertex" />
+        <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_edge" />
+        <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_vertex" />
       </list>
     </recent_temporary>
   </component>
@@ -448,51 +407,51 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_3 - 2021.10.12 at 15h 03m 54s.xml">
-      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_3" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 16m 19s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_3 - 2021.10.13 at 07h 13m 00s.xml">
-      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_3" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 16m 54s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 09m 17s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 17m 43s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 10m 43s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 18m 29s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 11m 24s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 20m 10s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 13m 15s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 26m 03s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 13m 50s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 27m 36s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 14m 51s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 29m 51s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 21m 04s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_1 - 2021.10.17 at 09h 32m 03s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_dataFrameCopy_TestDataFrameCopy_test_copy - 2021.10.15 at 19h 25m 30s.xml">
-      <configuration name="Nosetests for test_dataFrameCopy.TestDataFrameCopy.test_copy" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_actionableFeatureTweaker_TestActionableFeatureTweaker_test_case_2 - 2021.10.17 at 09h 39m 21s.xml">
+      <configuration name="Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_2" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="947" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49906543" visible="true" weight="0.24954791" />
+      <window_info id="Structure" order="1" sideWeight="0.5009346" side_tool="true" weight="0.24954791" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
       <window_info id="DB Browser" order="4" />
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32982457" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28187135" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.26900584" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28187135" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.374269" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -513,11 +472,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/test_actionableFeatureTweaker.py</url>
-          <line>128</line>
-          <option name="timeStamp" value="164" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/yaml/scanner.py</url>
           <line>290</line>
           <option name="timeStamp" value="169" />
@@ -527,6 +481,16 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>list(breast_cancer.feature_names)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>breast_cancer.feature_names</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>tag_registry</expression-string>
         <language-id>Python</language-id>
@@ -562,61 +526,9 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>self.X.loc[indexes]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.X.loc[indexes][self.costfunc_name]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/yaml/composer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/yaml/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/yaml/constructor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/jinja2/environment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="1303" selection-start-line="1303" selection-end-line="1303" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/yaml/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="549" selection-start-line="549" selection-end-line="549" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/rubrik/sql/02write_metadata.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="93" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/rubrik/sql/03query_metadata.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -699,13 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/nodes/load/db/writer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
@@ -900,36 +805,37 @@
     <entry file="file://$PROJECT_DIR$/test/resources/dummy/model/Figure_1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/model/Dummy_Clustering.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="531">
-            <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <first_editor relative-caret-position="471">
+            <caret line="42" column="67" selection-start-line="42" selection-start-column="67" selection-end-line="42" selection-end-column="67" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_dag.py">
+    <entry file="file://$PROJECT_DIR$/core/nodes/load/db/writer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-205">
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-214">
+          <caret line="9" column="64" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/cli/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="75" column="92" selection-start-line="75" selection-start-column="92" selection-end-line="75" selection-end-column="92" />
+        <state relative-caret-position="990">
+          <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -937,6 +843,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1906">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_dag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/pandas/plotting/_matplotlib/boxplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="361" selection-start-line="361" selection-end-line="361" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/pandas/core/frame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="3029" selection-start-line="3029" selection-end-line="3029" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/t20/lib/python3.7/site-packages/pandas/core/indexing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="1304" selection-start-line="1304" selection-end-line="1304" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/resources/dummy/model/features.npy">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_actionableFeatureTweaker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-855">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

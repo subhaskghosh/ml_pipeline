@@ -20,7 +20,7 @@ class TestActionableFeatureTweaker(TestCase):
         print(breast_cancer.target_names)
 
         train, test, labels_train, labels_test = \
-            sklearn.model_selection.train_test_split(breast_cancer.data, breast_cancer.target, train_size=0.80)
+            sklearn.model_selection.train_test_split(breast_cancer.data, breast_cancer.target, train_size=0.60)
 
         rf = sklearn.ensemble.RandomForestClassifier(n_estimators=30)
 
@@ -48,6 +48,9 @@ class TestActionableFeatureTweaker(TestCase):
         _ = axs[2].scatter(x_test_pos, x_test_tweak_pos)
         _ = axs[3].scatter(tweak_costs['id'].values.tolist(), tweak_costs[costfunc].values.tolist())
 
+        tweak_signs = tweak_signs[list(breast_cancer.feature_names)]
+        ax = tweak_signs.plot.box()
+        plt.setp(ax.get_xticklabels(), rotation=45)
         plt.show()
 
     def test_case_2(self):
