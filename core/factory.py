@@ -26,6 +26,7 @@ from core.nodes.transform.preprocessing import *
 class NodeFactory(object):
     """Construct a node by name type and return"""
     def __init__(self):
+        self.logger = get_logger("NodeFactory")
         self.nodes = {
             'extract.csv': 'CSVFIleReaderNode',
             'extract.postgres': 'PostgresReaderNode',
@@ -72,4 +73,5 @@ class NodeFactory(object):
             node = globals()[self.nodes[name]](name, parameter, input, output)
             return node
         else:
+            self.logger.warn(f"Trying to create a new type of node: {name} that is not implemented yet! Defaulting to AbstructNode!")
             return AbstructNode(name, parameter, input, output)
