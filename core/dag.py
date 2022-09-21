@@ -4,7 +4,6 @@ based on https://github.com/xianghuzhao/paradag, but using networkx and
 added executable type for nodes.
 """
 __author__ = "Subhas K. Ghosh"
-__copyright__ = "Copyright (C) 2021 GTM.ai"
 __version__ = "1.0"
 from core.cache import SimpleCache
 from core.error import *

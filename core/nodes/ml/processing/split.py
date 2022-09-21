@@ -2,7 +2,6 @@
 This script defines the class that can be used for defining a node in the DAG.
 """
 __author__ = "Subhas K. Ghosh"
-__copyright__ = "Copyright (C) 2021 GTM.ai"
 __version__ = "1.0"
 from sklearn.model_selection import train_test_split
 from core.error import NodeConfigurationError

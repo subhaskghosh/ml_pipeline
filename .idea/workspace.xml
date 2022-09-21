@@ -1,58 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9e60191d-1d9f-4141-99df-29eefe8f3786" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ml_pipeline.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ml_pipeline.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cli/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/cli/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/cache.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/cache.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/dag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/error.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/error.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/executor.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/executor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/logmanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/logmanager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/common/generic.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/common/generic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/common/sql/template2sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/extract/db/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/extract/db/reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/extract/file/csv_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/info/profiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/info/profiler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/load/db/writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/load/db/writer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/load/file/csv_writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/load/file/csv_writer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/classifier/rf.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/classifier/rf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/clustering/kmeans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/processing/split.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/processing/split.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/teaft/cost_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/teaft/tweaker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/ml/transformer/transformation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nodes/transform/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/selector.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/selector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/yaml_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/yaml_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/model/kmeans.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/model/kmeans.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.yaml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/extract/db/reader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="35" column="121" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="121" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/nodes/load/db/writer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="425" column="101" selection-start-line="425" selection-start-column="39" selection-end-line="425" selection-end-column="101" />
-              <folding>
-                <element signature="e#944#967#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/cli/pipeline.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/resources/rubrik/rubrik_clustering.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -146,11 +135,15 @@
       </list>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="947" />
   </component>
+  <component name="ProjectId" id="20i3lyO07padjjuqistA13tpMw1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -263,8 +256,12 @@
       <pane id="Scope" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/anaconda2/envs/Python3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -279,19 +276,7 @@
       <recent name="$PROJECT_DIR$/test/resources/dummy/csv" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_2">
+  <component name="RunManager" selected="Python.pipeline_predict">
     <configuration name="pipeline_classifier" type="PythonConfigurationType" factoryName="Python">
       <module name="ml_pipeline" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -431,14 +416,14 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.pipeline_predict" />
       <item itemvalue="Python.pipeline_classifier" />
       <item itemvalue="Python.pipeline_db_rubrik" />
-      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_vertex" />
-      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_edge" />
-      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_validate_vertex" />
+      <item itemvalue="Python.pipeline_predict" />
       <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_1" />
       <item itemvalue="Python tests.Nosetests for test_actionableFeatureTweaker.TestActionableFeatureTweaker.test_case_2" />
+      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_edge" />
+      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_add_vertex" />
+      <item itemvalue="Python tests.Nosetests for test_dag.TestDag.test_validate_vertex" />
     </list>
     <recent_temporary>
       <list>
@@ -450,6 +435,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>

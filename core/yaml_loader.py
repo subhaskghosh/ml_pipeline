@@ -8,7 +8,6 @@ This script defines the class that can be used for building a configuration obje
 The config object can be feed into DAG to generate the pipeline.
 """
 __author__ = "Subhas K. Ghosh"
-__copyright__ = "Copyright (C) 2021 GTM.ai"
 __version__ = "1.0"
 
 from typing import Any, Dict, Tuple, Type

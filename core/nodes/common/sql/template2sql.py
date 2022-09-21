@@ -2,7 +2,6 @@
 Converts SQL template to formatted SQL, Based on jina2SQL
 """
 __author__ = "Subhas K. Ghosh"
-__copyright__ = "Copyright (C) 2021 GTM.ai"
 __version__ = "1.0"
 
 from jinja2 import Environment
@@ -13,14 +12,9 @@ from jinja2.utils import Markup
 from collections import OrderedDict
 from copy import deepcopy
 from six import string_types
-
 from threading import local
-from random import Random
 
 _thread_local = local()
-
-random = Random()
-
 
 class JinjaSqlException(Exception):
     pass

@@ -2,7 +2,6 @@
 This script defines the class that can be used for defining a node in the DAG.
 """
 __author__ = "Subhas K. Ghosh"
-__copyright__ = "Copyright (C) 2021 GTM.ai"
 __version__ = "1.0"
 
 import json
@@ -16,7 +15,7 @@ class ClusterProfiler(AbstructNode):
     """Clustering features profiler"""
     def __init__(self, name, parameter, input, output):
         super().__init__(name, parameter, input, output)
-        self.logger = get_logger("DataFrameProfiler")
+        self.logger = get_logger("ClusterProfiler")
         # Validate parameter
         if 'report_path' in self.parameter:
             self.report_path = self.parameter['report_path']
@@ -222,3 +221,22 @@ class DatFrameProfiler(AbstructNode):
         profile = ProfileReport(df,progress_bar=False)
 
         profile.to_file(self.report_path)
+
+class FeatureStats(AbstructNode):
+    """Compute feature stats for variables"""
+    def __init__(self, name, parameter, input, output):
+        super().__init__(name, parameter, input, output)
+        self.logger = get_logger("FeatureStats")
+        # Validate parameter
+        if 'columns' in self.parameter:
+            self.columns = self.parameter['columns']
+        else:
+            raise NodeConfigurationError(
+                'Columns not specified "{0}"'.format(parameter))
+
+        if self.input == None:
+            raise NodeConfigurationError(
+                'Input can not be None')
+
+    def execute(self):
+        df = self.getFromCache(self.input)
